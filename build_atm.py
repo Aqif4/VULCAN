@@ -394,7 +394,7 @@ class Atm(object):
             data_atm.Kzz = 1e5 * (300./(data_atm.pico[1:-1]*1e-3))**0.5
             data_atm.Kzz = np.maximum(vulcan_cfg.K_deep, data_atm.Kzz)
         elif self.Kzz_prof == 'Pfunc': # Kzz profiles assumed in Tsai 2020
-            data_atm.Kzz = vulcan_cfg.K_max * (vulcan_cfg.K_p_lev*1e6 /(data_atm.pico[1:-1]))**0.4
+            data_atm.Kzz = vulcan_cfg.K_max * (vulcan_cfg.K_p_lev*1e6 /(data_atm.pico[1:-1]))**0.5
             data_atm.Kzz = np.maximum(vulcan_cfg.K_max, data_atm.Kzz)
         
         elif self.Kzz_prof == 'file': pass # already defined within atm_type = 'file     
