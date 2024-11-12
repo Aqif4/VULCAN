@@ -1,3 +1,4 @@
 #Ignore fastchem so make does not need to be run everytime it is pulled
 fastchem_vulcan/
 make_chems_fun.py
+chems_fun.py
