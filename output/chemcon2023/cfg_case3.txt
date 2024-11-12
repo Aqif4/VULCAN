@@ -132,7 +132,7 @@ conv_step = 1000
 ode_solver = 'Ros2' # case sensitive
 use_print_prog = True
 use_print_delta = False
-print_prog_num = 10  # print the progress every x steps
+print_prog_num = 1000  # print the progress every x steps, default 100
 dttry = 1.E-10
 trun_min = 1e1
 runtime = 3.15E16*5 #Default 1.E11, 1Gyr=3.15E16
@@ -141,7 +141,7 @@ dt_max = runtime*1e-2
 dt_var_max = 2.
 dt_var_min = 0.5
 count_min = 120
-count_max = int(1000) #max number of steps, default 10^5
+count_max = int(1000000) #max number of steps, default 10^6
 atol = 1.E-1 # Try decreasing this if the solutions are not stable
 mtol = 1.E-20
 mtol_conv = 1.E-18
@@ -159,7 +159,7 @@ conver_ignore = ['HC3N'] # added 2023. to get rid off non-convergent species, e.
 rtol = 0.2             # relative tolerence for adjusting the stepsize 
 post_conden_rtol = 0.3 # switched to this value after fix_species_time
 
-# ====== Setting up for ouwtput and plotting ======
+# ====== Setting up for output and plotting ======
 # plotting:
 plot_TP = True
 use_live_plot = True
