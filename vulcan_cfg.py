@@ -13,7 +13,7 @@ gibbs_text = 'thermo/gibbs_text.txt' # (all the nasa9 files must be placed in th
 cross_folder = 'thermo/photo_cross/'
 com_file = 'thermo/all_compose.txt'
 atm_file = 'atm/atm_K218b_Hy_M23_PT_100bar.txt' # TP and Kzz (optional) file
-sflux_file = 'atm/stellar_flux/sflux-GJ436_K2-18b_0.3_albedo.txt' # sflux-HD189_B2020.txt This is the flux density at the stellar surface
+sflux_file = 'atm/stellar_flux/sflux-M1-5Gyr-0.45mass-median_nm.txt' # sflux-HD189_B2020.txt This is the flux density at the stellar surface
 top_BC_flux_file = 'atm/...' # the file for the top boundary conditions
 bot_BC_flux_file = 'atm/...' # the file for the lower boundary conditions
 vul_ini = 'output/...' # the file to initialize the abundances for ini_mix = 'vulcan_ini'
@@ -21,7 +21,7 @@ vul_ini = 'output/...' # the file to initialize the abundances for ini_mix = 'vu
 output_dir = 'output/chemcon2023/'
 plot_dir = 'plot/'
 movie_dir = 'plot/movie/'
-out_name =  'case1.vul' # output file name
+out_name =  'case3.vul' # output file name
 
 # ====== Setting up the elemental abundance ======
 use_solar = False # True: using the solar abundance from Table 10. K.Lodders 2009; False: using the customized elemental abundance. 
@@ -78,7 +78,7 @@ use_Kzz = True
 use_moldiff = True #molecular diffusion
 use_vz = True #vertical advection
 atm_type = 'file'  # Options: 'isothermal', 'analytical', 'file', or 'vulcan_ini' 'table'
-Kzz_prof = 'Pfunc' # Options: 'const','file' or 'Pfunc' (Kzz increased with P^-0.4)
+Kzz_prof = 'Pfunc' # Options: 'const','file' or 'Pfunc' (Kzz increased with P^-x, changeable in build_atm.py line 397)
 K_max = 1e6        # for Kzz_prof = 'Pfunc'
 K_p_lev = 0.5      # for Kzz_prof = 'Pfunc'
 vz_prof = 'const'  # Options: 'const' or 'file'
@@ -132,16 +132,16 @@ conv_step = 1000
 ode_solver = 'Ros2' # case sensitive
 use_print_prog = True
 use_print_delta = False
-print_prog_num = 100  # print the progress every x steps 
+print_prog_num = 1000  # print the progress every x steps, default 100
 dttry = 1.E-10
 trun_min = 1e1
-runtime = 1.E11
+runtime = 3.15E16*5 #Default 1.E11, 1Gyr=3.15E16
 dt_min = 1.E-14
 dt_max = runtime*1e-2
 dt_var_max = 2.
 dt_var_min = 0.5
 count_min = 120
-count_max = int(1000000) #max number of steps
+count_max = int(1000000) #max number of steps, default 10^6
 atol = 1.E-1 # Try decreasing this if the solutions are not stable
 mtol = 1.E-20
 mtol_conv = 1.E-18
@@ -159,7 +159,7 @@ conver_ignore = ['HC3N'] # added 2023. to get rid off non-convergent species, e.
 rtol = 0.2             # relative tolerence for adjusting the stepsize 
 post_conden_rtol = 0.3 # switched to this value after fix_species_time
 
-# ====== Setting up for ouwtput and plotting ======
+# ====== Setting up for output and plotting ======
 # plotting:
 plot_TP = True
 use_live_plot = True

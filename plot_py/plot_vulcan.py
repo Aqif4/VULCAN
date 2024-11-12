@@ -89,7 +89,7 @@ else:
 #plt.title('T1400')
    
 plt.gca().set_xscale('log')       
-plt.xlim((1.E-12, 1.e-2))
+plt.xlim((1.E-8, 1)) #Default 1E-12 and 1e-2
 plt.legend(frameon=0, prop={'size':12}, loc='best')
 # handles, labels = plt.gca().get_legend_handles_labels()
 # display = range(len(sp_list))
