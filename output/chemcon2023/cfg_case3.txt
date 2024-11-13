@@ -35,7 +35,7 @@ N_H = 8.1853E-5 * factor
 S_H = 1.3183E-5 * factor
 He_H = 0.09692
 
-ini_mix = 'const_mix' # Options: 'EQ', 'const_mix', 'vulcan_ini', 'table' (for 'vulcan_ini, the T-P grids have to be exactly the same)
+ini_mix = 'EQ' # Options: 'EQ', 'const_mix', 'vulcan_ini', 'table' (for 'vulcan_ini, the T-P grids have to be exactly the same)
 fastchem_met_scale = 1 * factor # scaling factor for other elements in fastchem (e.g., if fastchem_met_scale = 0.1, other elements such as Si and Mg will take 0.1 solar values)
 
 # Initialsing uniform (constant with pressure) mixing ratios (only reads when ini_mix = const_mix)
@@ -44,7 +44,7 @@ const_mix = {'H2O':0.1, 'CH4':5E-2, 'O2':O_H*0.1, 'He':0.09691, 'N2':N_H*0.5, 'H
 # ====== Setting up photochemistry ======
 use_photo = True
 # astronomy input
-r_star = 0.4445 # stellar radius in solar radius
+r_star = 0.469 # stellar radius in solar radius
 Rp = 2.61*637813700.0 # Planetary radius (cm) (for computing gravity)
 orbit_radius = 0.15910 # planet-star distance in A.U.
 sl_angle = 60/180.*3.14159 # the zenith angle of the star in degree (usually 58 deg for the dayside average)
@@ -137,7 +137,7 @@ dttry = 1e-10 #Step size to start out with, default 1E-10
 trun_min = 1e1
 runtime = 3.15E16*5 #Default 1.E11, 1Gyr=3.15E16
 dt_min = 1.E-14
-dt_max = runtime*1e-2
+dt_max = runtime*1e-3
 dt_var_max = 2.
 dt_var_min = 0.5
 count_min = 120
@@ -157,7 +157,7 @@ conver_ignore = ['HC3N'] # added 2023. to get rid off non-convergent species, e.
 
 # ====== Setting up numerical parameters for Ros2 ODE solver ====== 
 rtol = 2.5            # relative tolerence for adjusting the stepsize, default 0.2 try 2.5
-post_conden_rtol = 0.3 # switched to this value after fix_species_time
+post_conden_rtol = 0.3 # switched to this value after fix_species_time, default 0.3
 
 # ====== Setting up for output and plotting ======
 # plotting:
@@ -170,10 +170,10 @@ use_save_movie = False
 use_flux_movie = False
 plot_height = False
 use_PIL = True 
-live_plot_frq = 20
+live_plot_frq = 100
 save_movie_rate = live_plot_frq
 y_time_freq = 100  #  storing data for every 'y_time_freq' step
-plot_spec = ['H2','H2O', 'H', 'CH4', 'CO', 'CO2', 'C2H2', 'HCN', 'NH3' ]
+plot_spec = ['H','H2', 'N2', 'H20', 'CH4', 'NH3', 'CO', 'CO2', 'HCN', 'C2H6','HC3N','CH3OH' ]
 # output:
 output_humanread = False
 use_shark = False
