@@ -35,7 +35,7 @@ N_H = 8.1853E-5 * factor
 S_H = 1.3183E-5 * factor
 He_H = 0.09692
 
-ini_mix = 'EQ' # Options: 'EQ', 'const_mix', 'vulcan_ini', 'table' (for 'vulcan_ini, the T-P grids have to be exactly the same)
+ini_mix = 'const_mix' # Options: 'EQ', 'const_mix', 'vulcan_ini', 'table' (for 'vulcan_ini, the T-P grids have to be exactly the same)
 fastchem_met_scale = 1 * factor # scaling factor for other elements in fastchem (e.g., if fastchem_met_scale = 0.1, other elements such as Si and Mg will take 0.1 solar values)
 
 # Initialsing uniform (constant with pressure) mixing ratios (only reads when ini_mix = const_mix)
@@ -133,7 +133,7 @@ ode_solver = 'Ros2' # case sensitive
 use_print_prog = True
 use_print_delta = False
 print_prog_num = 1000  # print the progress every x steps, default 100
-dttry = 1 #Step size to start out with, default 1E-10
+dttry = 1e-10 #Step size to start out with, default 1E-10
 trun_min = 1e1
 runtime = 3.15E16*5 #Default 1.E11, 1Gyr=3.15E16
 dt_min = 1.E-14
@@ -142,9 +142,9 @@ dt_var_max = 2.
 dt_var_min = 0.5
 count_min = 120
 count_max = int(1000000) #max number of steps, default 10^6
-atol = 1.E-1 # Try decreasing this if the solutions are not stable
-mtol = 1.E-20
-mtol_conv = 1.E-18
+atol = 1.E-1 *100# Try decreasing this if the solutions are not stable, default 1e-1, try 10 or 100 times more
+mtol = 1.E-20*100 #Default 1e-20, try 10 or 100 times more
+mtol_conv = 1.E-18*100 #Default 1e-18, try 10 or 100 times more
 pos_cut = 0
 nega_cut = -1.
 loss_eps = 1e-1
@@ -156,7 +156,7 @@ flux_atol = 1. # the tol for actinc flux (# photons cm-2 s-1 nm-1)
 conver_ignore = ['HC3N'] # added 2023. to get rid off non-convergent species, e.g. HC3N without sinks 
 
 # ====== Setting up numerical parameters for Ros2 ODE solver ====== 
-rtol = 0.2             # relative tolerence for adjusting the stepsize 
+rtol = 2.5            # relative tolerence for adjusting the stepsize, default 0.2 try 2.5
 post_conden_rtol = 0.3 # switched to this value after fix_species_time
 
 # ====== Setting up for output and plotting ======
