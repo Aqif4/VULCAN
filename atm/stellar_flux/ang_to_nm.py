@@ -16,28 +16,34 @@ try:
     print("Data loaded successfully:")
 except FileNotFoundError:
     print(f"Error: The file '{filename}' was not found.")
+    sys.exit(1)
 except Exception as e:
     print(f"An error occurred: {e}")
-    
-#Extract wavelength and flux columns
-wavelength_ang=data.iloc[:,0]
-flux_ang=data.iloc[:,1]
+    sys.exit(1)
 
-#Convert wavelength and flux
-wavelength_nm=wavelength_ang/10
-flux_nm=flux_ang*10
+# Extract wavelength and flux columns
+wavelength_ang = data.iloc[:, 0]
+flux_ang = data.iloc[:, 1]
+
+# Convert wavelength and flux
+wavelength_nm = wavelength_ang / 10
+flux_nm = flux_ang * 10
 
 # Create a new DataFrame with the converted data
 new_data = pd.DataFrame({
-    'Wavelength (nm)': wavelength_nm,
-    'Flux Density (erg/cm2/s/nm)': flux_nm
+    'WL(nm)': wavelength_nm,
+    'Flux(ergs/cm**2/s/nm)': flux_nm
 })
 
-#Change filename
-base, ext=os.path.splitext(filename)
-new_filename=base+"_nm"+ext
+# Format the columns to two decimal places for wavelength and scientific notation for flux
+new_data['WL(nm)'] = new_data['WL(nm)'].map(lambda x: f"{x:5.2f}")
+new_data['Flux(ergs/cm**2/s/nm)'] = new_data['Flux(ergs/cm**2/s/nm)'].map(lambda x: f"{x:.6E}")
 
-# Save the new DataFrame to a space-delimited file (same format as original)
-new_data.to_csv(new_filename, sep=' ', index=True, header=True)
+# Change filename
+base, ext = os.path.splitext(filename)
+new_filename = base + "_nm" + ext
+
+# Save the new DataFrame to a space-delimited file with headers
+new_data.to_csv(new_filename, sep=' ', index=False, header=True)
 
 print("Converted data saved to " + new_filename)

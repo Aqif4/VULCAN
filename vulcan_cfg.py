@@ -13,7 +13,7 @@ gibbs_text = 'thermo/gibbs_text.txt' # (all the nasa9 files must be placed in th
 cross_folder = 'thermo/photo_cross/'
 com_file = 'thermo/all_compose.txt'
 atm_file = 'atm/atm_K218b_Hy_M23_PT_100bar.txt' # TP and Kzz (optional) file
-sflux_file = 'atm/stellar_flux/sflux-M1-5Gyr-0.45mass-median_nm.txt' # sflux-HD189_B2020.txt This is the flux density at the stellar surface
+sflux_file = 'atm/stellar_flux/sflux-M1-5gyr-0.45mass-median_nm.txt' # sflux-HD189_B2020.txt This is the flux density at the stellar surface
 top_BC_flux_file = 'atm/...' # the file for the top boundary conditions
 bot_BC_flux_file = 'atm/...' # the file for the lower boundary conditions
 vul_ini = 'output/...' # the file to initialize the abundances for ini_mix = 'vulcan_ini'
@@ -79,10 +79,10 @@ use_moldiff = True #molecular diffusion
 use_vz = True #vertical advection
 atm_type = 'file'  # Options: 'isothermal', 'analytical', 'file', or 'vulcan_ini' 'table'
 Kzz_prof = 'Pfunc' # Options: 'const','file' or 'Pfunc' (Kzz increased with P^-x, changeable in build_atm.py line 397)
-K_max = 1e6        # for Kzz_prof = 'Pfunc'
-K_p_lev = 0.5      # for Kzz_prof = 'Pfunc'
+K_max =  1e10      # for Kzz_prof = 'Pfunc', in cm2/s
+K_p_lev =0.5    # for Kzz_prof = 'Pfunc' in bar, where we go from constant Kzz to varying Kzz
 vz_prof = 'const'  # Options: 'const' or 'file'
-gs = 1243.         # surface gravity (cm/s^2)  (HD189:2140  HD209:936)
+gs = 1243.         # surface gravity (cm/s^2)  (HD189:2140  HD209:936 K218b:1243)
 Tiso = 1000 # only read when atm_type = 'isothermal'
 # setting the parameters for the analytical T-P from (126)in Heng et al. 2014. Only reads when atm_type = 'analytical' 
 # T_int, T_irr, ka_L, ka_S, beta_S, beta_L
@@ -132,13 +132,13 @@ conv_step = 1000
 ode_solver = 'Ros2' # case sensitive
 use_print_prog = True
 use_print_delta = False
-print_prog_num = 1000  # print the progress every x steps, default 100
+print_prog_num = 100  # print the progress every x steps, default 100
 dttry = 1e-10 #Step size to start out with, default 1E-10
 trun_min = 1e1
-runtime = 3.15E16*5 #Default 1.E11, 1Gyr=3.15E16
+runtime = 3.15E16*5*1e-3 #Default 1.E11, 1Gyr=3.15E16
 dt_min = 1.E-14
 dt_max = runtime*1e-3
-dt_var_max = 2.
+dt_var_max = 2. #Default 2, varies by how much dt can change
 dt_var_min = 0.5
 count_min = 120
 count_max = int(1000000) #max number of steps, default 10^6
@@ -156,8 +156,8 @@ flux_atol = 1. # the tol for actinc flux (# photons cm-2 s-1 nm-1)
 conver_ignore = ['HC3N'] # added 2023. to get rid off non-convergent species, e.g. HC3N without sinks 
 
 # ====== Setting up numerical parameters for Ros2 ODE solver ====== 
-rtol = 2.5            # relative tolerence for adjusting the stepsize, default 0.2 try 2.5
-post_conden_rtol = 0.3 # switched to this value after fix_species_time, default 0.3
+rtol = 0.2           # relative tolerence for adjusting the stepsize, default 0.2 
+post_conden_rtol = 2.5 # switched to this value after fix_species_time, default 0.3 try 2.5
 
 # ====== Setting up for output and plotting ======
 # plotting:

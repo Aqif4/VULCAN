@@ -80,7 +80,8 @@ for color_index,sp in enumerate(plot_spec):
 if use_height == False:
     plt.gca().set_yscale('log') 
     plt.gca().invert_yaxis() 
-    plt.ylim((data['atm']['pco'][0]/1e6,data['atm']['pco'][-1]/1e6))
+    """plt.ylim((data['atm']['pco'][0]/1e6,data['atm']['pco'][-1]/1e6)) for bounds based on data"""
+    plt.ylim((1e2, 1e-9))  # Replace with your desired pressure range in bar
     plt.ylabel("Pressure (bar)")
 else:
     plt.ylim((data['atm']['zmco'][0]/1e5,data['atm']['zmco'][-1]/1e5)) 
@@ -106,3 +107,24 @@ if vulcan_cfg.use_PIL == True:
     plot.show()
 else: plt.show()
 
+#To show the mixing ratios at a given pressure
+
+# Define the target pressure level in bars (1 mbar = 1e-3 bar)
+target_pressure = 1e-3  # bar
+
+# Find the index where the pressure is closest to 1 mbar
+pressure_array = data['atm']['pco'] / 1e6  # Convert pressure to bar
+pressure_index = np.argmin(np.abs(pressure_array - target_pressure))
+
+# Define the species of interest
+species_of_interest = ['H2O', 'CH4', 'NH3', 'CO2', 'CO']
+
+# Print the mixing ratios for each species at 1 mbar
+print(f"Mixing ratios at approximately {target_pressure} bar (1 mbar):")
+for species in species_of_interest:
+    if species in vulcan_spec:
+        species_index = vulcan_spec.index(species)
+        mixing_ratio = data['variable']['ymix'][pressure_index, species_index]
+        print(f"{species}: {mixing_ratio:.3e}")
+    else:
+        print(f"{species}: Not found in data")
