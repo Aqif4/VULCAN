@@ -21,7 +21,7 @@ vul_ini = 'output/chemcon2023/case3.vul' # the file to initialize the abundances
 output_dir = 'output/chemcon2023/'
 plot_dir = 'plot/'
 movie_dir = 'plot/movie/'
-out_name =  'case3_1By.vul' # output file name
+out_name =  'case3_5gyr.vul' # output file name
 
 # ====== Setting up the elemental abundance ======
 use_solar = False # True: using the solar abundance from Table 10. K.Lodders 2009; False: using the customized elemental abundance. 
@@ -114,7 +114,6 @@ use_settling = True
 use_relax = ['H2O']
 start_conden_time = 0#1e3
 condense_sp = ['H2O']
-target_H2O_sat_ratio= None #The H2O saturation mixing ratio, below the condensation point, write None if n/a
 r_p = {'H2O_l_s': 0.01}  # particle radius in cm (1e-4 = 1 micron)
 rho_p = {'H2O_l_s': 0.9} # particle density in g cm^-3
 humidity = 0.5     
@@ -136,7 +135,7 @@ use_print_delta = False
 print_prog_num = 100  # print the progress every x steps, default 100
 dttry = 1e-8 #Step size to start out with, default 1E-10
 trun_min = 1e1
-runtime = 3.15E16*1 #Default 1.E11, 1Gyr=3.15E16
+runtime = 3.15E16*5*1e-3 #Default 1.E11, 1Gyr=3.15E16
 dt_min = 1.E-14
 dt_max = runtime*1e-2
 dt_var_max = 2. #Default 2, varies by how much dt can change
@@ -174,7 +173,7 @@ use_PIL = True
 live_plot_frq = 10
 save_movie_rate = live_plot_frq
 y_time_freq = 100  #  storing data for every 'y_time_freq' step
-plot_spec = ['H','H2', 'N2', 'H2O', 'CH4', 'NH3', 'CO', 'CO2', 'HCN', 'C2H6','HC3N','CH3OH' ] #These are the chemcon2023 species
+plot_spec = ['H','H2', 'N2', 'H2O', 'CH4', 'NH3', 'CO', 'CO2', 'HCN', 'C2H6','HC3N','CH3OH' ]
 # output:
 output_humanread = False
 use_shark = False

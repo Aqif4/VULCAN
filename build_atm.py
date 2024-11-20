@@ -209,39 +209,53 @@ class InitialAbun(object):
 
 				else:
 					raise IOError ('\nInitial mixing ratios unknown. Check the setting in vulcan_cfg.py.')
-		
-		if vulcan_cfg.use_condense == True:
+
+		#Condensation and saturation
+		#Original
+		if vulcan_cfg.use_condense == True and vulcan_cfg.target_H2O_sat_ratio is None:
 			for sp in vulcan_cfg.condense_sp:
-				data_atm.sat_mix[sp] = data_atm.sat_p[sp]/data_atm.pco
-				
+				data_atm.sat_mix[sp] = data_atm.sat_p[sp] / data_atm.pco
+
 				# fixed 2022
 				data_atm.sat_mix[sp] = np.minimum(1., data_atm.sat_mix[sp])
-				
-				if sp == 'H2O': data_atm.sat_mix[sp] *= vulcan_cfg.humidity
-				
+
+				if sp == 'H2O':
+					data_atm.sat_mix[sp] *= vulcan_cfg.humidity
+
 				if vulcan_cfg.use_ini_cold_trap == True:
-					
-					if  vulcan_cfg.ini_mix != 'table' and vulcan_cfg.ini_mix != 'vul_ini':
+					if vulcan_cfg.ini_mix != 'table' and vulcan_cfg.ini_mix != 'vul_ini':
 						# the level where condensation starts    
-						conden_bot = np.argmax( data_atm.n_0*data_atm.sat_mix[sp] <= data_var.y[:,species.index(sp)] )
-						# conden_status: ture if the partial p >= the saturation p
+						conden_bot = np.argmax(data_atm.n_0 * data_atm.sat_mix[sp] <= data_var.y[:, species.index(sp)])
+
+						# conden_status: true if the partial p >= the saturation p
 						sat_rho = data_atm.n_0 * data_atm.sat_mix[sp]
-						conden_status = data_var.y[:,species.index(sp)] >= sat_rho
+						conden_status = data_var.y[:, species.index(sp)] >= sat_rho
 
 						# take the min between the mixing ratio and the saturation mixing ratio
-						data_var.y[:,species.index(sp)] = np.minimum(data_atm.n_0 * data_atm.sat_mix[sp], data_var.y[:,species.index(sp)])
+						data_var.y[:, species.index(sp)] = np.minimum(data_atm.n_0 * data_atm.sat_mix[sp], data_var.y[:, species.index(sp)])
 
-						if list(data_var.y[conden_status,species.index(sp)]): # if it condenses
-							min_sat = np.amin(data_atm.sat_mix[sp][conden_status]) # the mininum value of the saturation p within the saturation region
+						if list(data_var.y[conden_status, species.index(sp)]):  # if it condenses
+							min_sat = np.amin(data_atm.sat_mix[sp][conden_status])  # minimum value of the saturation p within the saturation region
 							conden_min_lev = np.where(data_atm.sat_mix[sp] == min_sat)[0][0]
-							
+
 							data_atm.conden_min_lev = conden_min_lev
+
+							print(sp + " condensed from nz = " + str(conden_bot) + " to the minimum level nz = " + str(conden_min_lev) + " (cold trap)") 
 							
-							print ( sp + " condensed from nz = " + str(conden_bot) + " to the minimum level nz = "+ str(conden_min_lev) + " (cold trap)") 
-							#data_var.y[conden_min_lev:,species.index(sp)] = (y_ini[conden_min_lev,species.index(sp)]/data_atm.n_0[conden_min_lev]) *data_atm.n_0[conden_min_lev:]
-							data_var.y[conden_min_lev:,species.index(sp)] = data_atm.sat_mix[sp][conden_min_lev] * data_atm.n_0[conden_min_lev:]  
-						   
-		# re-normalisation 
+							# Set saturation below condensation point to the target value (if provided)
+							if vulcan_cfg.target_H2O_sat_ratio is not None:
+								mu = vulcan_cfg.target_H2O_sat_ratio
+								data_atm.sat_mix['H2O'][:conden_min_lev] = mu
+								data_var.y[:conden_min_lev, species.index(sp)] = mu * data_atm.n_0[:conden_min_lev]
+							else:
+								# If target H2O saturation ratio is not provided, keep the original saturation value
+								data_var.y[conden_min_lev:, species.index(sp)] = data_atm.sat_mix[sp][conden_min_lev] * data_atm.n_0[conden_min_lev:]
+
+							# For above condensation point, ensure mixing ratio doesn't exceed saturation ratio
+							data_var.y[~conden_status, species.index(sp)] = np.minimum(data_var.y[~conden_status, species.index(sp)], data_atm.sat_mix[sp][~conden_status] * data_atm.n_0[~conden_status])
+    
+
+	    # re-normalisation 
 		# TEST
 		# Excluding the non-gaseous species
 		if vulcan_cfg.use_condense == True:
@@ -400,7 +414,7 @@ class Atm(object):
 			# Apply the cap for upper atmosphere 
 			Kzz = np.minimum(vulcan_cfg.K_max, Kzz) 
 			# Apply the constant value for P > 0.5 bar (Kzz = 10^6 cm²/s)
-			Kzz[data_atm.pico[1:-1] > vulcan_cfg.K_p_lev] = 1e6  # Set Kzz = 10^6 for P > 0.5 bar
+			Kzz[data_atm.pico[1:-1]*1e-6 > vulcan_cfg.K_p_lev] = 1e6  # Set Kzz = 10^6 for P > 0.5 bar
 			# Assign calculated Kzz values to the data
 			data_atm.Kzz = Kzz
 		elif self.Kzz_prof == 'file': 

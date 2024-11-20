@@ -133,11 +133,11 @@ ode_solver = 'Ros2' # case sensitive
 use_print_prog = True
 use_print_delta = False
 print_prog_num = 100  # print the progress every x steps, default 100
-dttry = 1e-10 #Step size to start out with, default 1E-10
+dttry = 1e-8 #Step size to start out with, default 1E-10
 trun_min = 1e1
 runtime = 3.15E16*5*1e-3 #Default 1.E11, 1Gyr=3.15E16
 dt_min = 1.E-14
-dt_max = runtime*1e-3
+dt_max = runtime*1e-2
 dt_var_max = 2. #Default 2, varies by how much dt can change
 dt_var_min = 0.5
 count_min = 120

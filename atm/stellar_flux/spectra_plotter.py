@@ -35,6 +35,8 @@ for i, filename in enumerate(sys.argv[1:]):
 
 # Adding labels, title, legend, and grid
 plt.xlabel("Wavelength (nm)")
+plt.xscale('log')
+plt.yscale('log')
 plt.ylabel("Flux (ergs/cm²/s/nm)")
 plt.title("Multiple Spectra")
 plt.legend(loc="best")
