@@ -12,16 +12,16 @@ use_lowT_limit_rates = True
 gibbs_text = 'thermo/gibbs_text.txt' # (all the nasa9 files must be placed in the folder: thermo/NASA9/)
 cross_folder = 'thermo/photo_cross/'
 com_file = 'thermo/all_compose.txt'
-atm_file = 'atm/atm_K218b_Hy_M23_PT_100bar.txt' # TP and Kzz (optional) file
-sflux_file = 'atm/stellar_flux/sflux-M1-5gyr-0.45mass-median_nm.txt' # sflux-HD189_B2020.txt This is the flux density at the stellar surface
+atm_file = 'atm/atm_K218b_Hy_WoganPT.txt' # TP and Kzz (optional) file
+sflux_file = 'atm/sflux-GJ436_K2-18b_0.3_albedo.txt' # sflux-HD189_B2020.txt This is the flux density at the stellar surface
 top_BC_flux_file = 'atm/...' # the file for the top boundary conditions
-bot_BC_flux_file = 'atm/...' # the file for the lower boundary conditions
+bot_BC_flux_file = 'atm/BC_bot_Wogan.txt' # the file for the lower boundary conditions
 vul_ini = 'output/chemcon2023/case3.vul' # the file to initialize the abundances for ini_mix = 'vulcan_ini'
 # output:
-output_dir = 'output/chemcon2023/'
+output_dir = 'output/WoCo24'
 plot_dir = 'plot/'
 movie_dir = 'plot/movie/'
-out_name =  'case3_1By.vul' # output file name
+out_name =  'Uninhabited_Hycean.vul' # output file name
 
 # ====== Setting up the elemental abundance ======
 use_solar = False # True: using the solar abundance from Table 10. K.Lodders 2009; False: using the customized elemental abundance. 
@@ -35,11 +35,13 @@ N_H = 8.1853E-5 * factor
 S_H = 1.3183E-5 * factor
 He_H = 0.09692
 
-ini_mix = 'vulcan_ini' # Options: 'EQ', 'const_mix', 'vulcan_ini', 'table' (for 'vulcan_ini, the T-P grids have to be exactly the same)
+ini_mix = 'const_mix' # Options: 'EQ', 'const_mix', 'vulcan_ini', 'table' (for 'vulcan_ini, the T-P grids have to be exactly the same)
 fastchem_met_scale = 1 * factor # scaling factor for other elements in fastchem (e.g., if fastchem_met_scale = 0.1, other elements such as Si and Mg will take 0.1 solar values)
 
 # Initialsing uniform (constant with pressure) mixing ratios (only reads when ini_mix = const_mix)
-const_mix = {'H2O':0.1, 'CH4':5E-2, 'O2':O_H*0.1, 'He':0.09691, 'N2':N_H*0.5, 'H2':1. -2.7761E-4*2*4/2} 
+#Default const_mix = {'H2O':0.1, 'CH4':5E-2, 'O2':O_H*0.1, 'He':0.09691, 'N2':N_H*0.5, 'H2':1. -2.7761E-4*2*4/2} 
+#For Wogan
+const_mix = {'H2O':0.1, 'CH4':5E-2, 'O2':1e-20, 'He':1e-20, 'N2':3e-3, 'H2':1. -2.7761E-4*2*4/2, 'CO2':8e-3}
 
 # ====== Setting up photochemistry ======
 use_photo = True
@@ -78,7 +80,7 @@ use_Kzz = True
 use_moldiff = True #molecular diffusion
 use_vz = True #vertical advection
 atm_type = 'file'  # Options: 'isothermal', 'analytical', 'file', or 'vulcan_ini' 'table'
-Kzz_prof = 'Pfunc' # Options: 'const','file' or 'Pfunc' (Kzz increased with P^-x, changeable in build_atm.py line 397)
+Kzz_prof = 'file' # Options: 'const','file' or 'Pfunc' (Kzz increased with P^-x, changeable in build_atm.py line 397)
 K_max =  1e10      # for Kzz_prof = 'Pfunc', in cm2/s
 K_p_lev =0.5    # for Kzz_prof = 'Pfunc' in bar, where we go from constant Kzz to varying Kzz
 vz_prof = 'const'  # Options: 'const' or 'file'
@@ -136,7 +138,7 @@ use_print_delta = False
 print_prog_num = 100  # print the progress every x steps, default 100
 dttry = 1e-8 #Step size to start out with, default 1E-10
 trun_min = 1e1
-runtime = 3.15E16*1 #Default 1.E11, 1Gyr=3.15E16
+runtime = 3.15E16*3.2 #Default 1.E11, 1Gyr=3.15E16
 dt_min = 1.E-14
 dt_max = runtime*1e-2
 dt_var_max = 2. #Default 2, varies by how much dt can change
@@ -174,7 +176,8 @@ use_PIL = True
 live_plot_frq = 10
 save_movie_rate = live_plot_frq
 y_time_freq = 100  #  storing data for every 'y_time_freq' step
-plot_spec = ['H','H2', 'N2', 'H2O', 'CH4', 'NH3', 'CO', 'CO2', 'HCN', 'C2H6','HC3N','CH3OH' ] #These are the chemcon2023 species
+#plot_spec = ['H','H2', 'N2', 'H2O', 'CH4', 'NH3', 'CO', 'CO2', 'HCN', 'C2H6','HC3N','CH3OH' ] #These are the chemcon2023 species
+plot_spec = ['H20', 'CO2', 'CO', 'NH3', 'CH4' ] #These are the WoCo species
 # output:
 output_humanread = False
 use_shark = False
