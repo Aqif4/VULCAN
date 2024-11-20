@@ -2878,7 +2878,7 @@ class Output(object):
                 plt.gca().set_yscale('log')
                 plt.gca().invert_yaxis()
                 plt.ylabel("Pressure (bar)")
-                plt.ylim((vulcan_cfg.P_b/1.E6,vulcan_cfg.P_t/1.E6))
+                plt.ylim(vulcan_cfg.y_limits)
             else: # plotting with height
                 line, = plt.plot(var.ymix[:,species.index(sp)], atm.zmco/1.e5, color = para.tableau20[color_index], label=sp_lab)
                 if vulcan_cfg.use_condense == True and sp in vulcan_cfg.condense_sp:
@@ -2891,7 +2891,7 @@ class Output(object):
         
         plt.title(str(para.count)+' steps and ' + str("{:.2e}".format(var.t)) + ' s' )
         plt.gca().set_xscale('log')         
-        plt.xlim(1.E-20, 1.)
+        plt.xlim(vulcan_cfg.x_limits)
         plt.legend(frameon=0, prop={'size':14}, loc=3)
         plt.xlabel("Mixing Ratios")
         plt.show(block=0)

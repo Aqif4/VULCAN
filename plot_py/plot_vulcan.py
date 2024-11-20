@@ -81,7 +81,7 @@ if use_height == False:
     plt.gca().set_yscale('log') 
     plt.gca().invert_yaxis() 
     """plt.ylim((data['atm']['pco'][0]/1e6,data['atm']['pco'][-1]/1e6)) for bounds based on data"""
-    plt.ylim((1e2, 1e-9))  # Replace with your desired pressure range in bar
+    plt.ylim((1, 1e-8))  # Replace with your desired pressure range in bar
     plt.ylabel("Pressure (bar)")
 else:
     plt.ylim((data['atm']['zmco'][0]/1e5,data['atm']['zmco'][-1]/1e5)) 
@@ -90,7 +90,7 @@ else:
 #plt.title('T1400')
    
 plt.gca().set_xscale('log')       
-plt.xlim((1.E-8, 1)) #Default 1E-12 and 1e-2
+plt.xlim((1.E-10, 1)) #Replace with desired mixing ratio range
 plt.legend(frameon=0, prop={'size':12}, loc='best')
 # handles, labels = plt.gca().get_legend_handles_labels()
 # display = range(len(sp_list))
@@ -118,6 +118,7 @@ pressure_index = np.argmin(np.abs(pressure_array - target_pressure))
 
 # Define the species of interest
 species_of_interest = ['H2O', 'CH4', 'NH3', 'CO2', 'CO']
+
 
 # Print the mixing ratios for each species at 1 mbar
 print(f"Mixing ratios at approximately {target_pressure} bar (1 mbar):")
