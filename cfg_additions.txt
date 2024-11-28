@@ -1,0 +1,8 @@
+#====== Added ======#
+
+#Plot limits
+y_limits=(1, 1e-8)
+x_limits= (1e-10, 1)
+
+if y_limits== None:
+    y_limits = (P_b/1.E6,P_t/1.E6)

@@ -2,7 +2,6 @@
 # Configuration file of VULCAN:
 # =============================================================================
 
-
 # ====== Setting up the elements included in the network ======
 atom_list = ['H', 'O', 'C', 'N']
 loss_ex = ['C','O']
@@ -127,9 +126,6 @@ fix_species = ['H2O', 'H2O_l_s']      # fixed the condensable species after cond
 fix_species_from_coldtrap_lev = False
 use_ini_cold_trap = True
 
-#==Added==##
-target_H2O_sat_ratio=None
-
 # ====== steady state check ======
 st_factor = 0.5
 conv_step = 10000
@@ -167,16 +163,7 @@ conver_ignore = ['HC3N'] # added 2023. to get rid off non-convergent species, e.
 rtol = 0.2           # relative tolerence for adjusting the stepsize
 post_conden_rtol = 2.75 # switched to this value after fix_species_time
 
-# ====== Setting up for output and plotting ======
-
-#Plot limits
-y_limits= None
-x_limits= (1e-10, 1)
-
-if y_limits== None:
-    y_limits = (P_b/1.E6,P_t/1.E6)
-
-
+# ====== Setting up for ouwtput and plotting ======
 # plotting:
 plot_TP = True
 use_live_plot = True
