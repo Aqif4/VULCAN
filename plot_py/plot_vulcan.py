@@ -40,8 +40,10 @@ plot_spec = tuple(plot_spec.split(','))
 nspec = len(plot_spec)
 
 # These are the "Tableau 20" colors as RGB.    
-tableau20 = [(31, 119, 180),(255, 127, 14),(44, 160, 44),(214, 39, 40),(148, 103, 189),(140, 86, 75), (227, 119, 194),(127, 127, 127),(188, 189, 34),(23, 190, 207),\
-(174, 199, 232),(255, 187, 120),(152, 223, 138),(255, 152, 150),(197, 176, 213),(196, 156, 148),(247, 182, 210),(199, 199, 199),(219, 219, 141),(158, 218, 229)] 
+tableau20 = [(31, 119, 180),(255, 127, 14),(44, 160, 44), #original (214, 39, 40)
+ (137,0,129) #to match considerations
+ ,(148, 103, 189),(140, 86, 75), (227, 119, 194),(127, 127, 127),(188, 189, 34),(23, 190, 207),\
+(174, 199, 232),(255, 187, 120),(152, 223, 138),(255, 152, 150),(197, 176, 213),(196, 156, 148),(247, 182, 210),(199, 199, 199),(219, 219, 141),(158, 218, 229)]
 # 
 
 
@@ -107,6 +109,8 @@ if vulcan_cfg.use_PIL == True:
     plot.show()
 else: plt.show()
 
+#=====Added=====
+
 #To show the mixing ratios at a given pressure
 
 # Define the target pressure level in bars (1 mbar = 1e-3 bar)
@@ -129,3 +133,21 @@ for species in species_of_interest:
         print(f"{species}: {mixing_ratio:.3e}")
     else:
         print(f"{species}: Not found in data")
+
+# Setting the 5th input argument as the title for the plot
+if len(sys.argv) > 4:
+    plot_title = sys.argv[4]
+else:
+    plot_title = "Mixing Ratio vs. Pressure"  # Default title
+
+# Apply the title to the plot
+plt.title(plot_title)
+
+
+
+plt.savefig(plot_dir + plot_name + '.png')
+plt.savefig(plot_dir + plot_name + '.eps')
+if vulcan_cfg.use_PIL == True:
+    plot = Image.open(plot_dir + plot_name + '.png')
+    plot.show()
+else: plt.show()
