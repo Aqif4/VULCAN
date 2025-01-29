@@ -12,8 +12,8 @@ use_lowT_limit_rates = True
 gibbs_text = 'thermo/gibbs_text.txt' # (all the nasa9 files must be placed in the folder: thermo/NASA9/)
 cross_folder = 'thermo/photo_cross/'
 com_file = 'thermo/all_compose.txt'
-atm_file = 'atm/atm_K218b_Hy_WoganPT_10bar.txt' # TP and Kzz (optional) file
-sflux_file = 'atm/stellar_flux/sflux-GJ176_K2-18b_0.3_albedo.txt' # sflux-HD189_B2020.txt This is the flux density at the stellar surface
+atm_file = 'atm/atm_K218b_Hy_WoganPT_10bar_plus70K_forTOI.txt' # TP and Kzz (optional) file
+sflux_file = 'atm/stellar_flux/sflux-GJ163.txt' # sflux-HD189_B2020.txt This is the flux density at the stellar surface
 top_BC_flux_file = 'atm/BC_top.txt' # the file for the top boundary conditions
 bot_BC_flux_file = 'atm/BC_bot_K218b_Wogan_life1.txt' # the file for the lower boundary conditions
 vul_ini =  'output/VIH_K2-18b_standard_GJ176_nz250_1e17s_2.vul' # the file to initialize the abundances for ini_mix = 'vulcan_ini'
@@ -21,7 +21,7 @@ vul_ini =  'output/VIH_K2-18b_standard_GJ176_nz250_1e17s_2.vul' # the file to in
 output_dir = 'output/k218_to_toi/'
 plot_dir = 'plot/'
 movie_dir = 'plot/movie/'
-out_name =  'VUH_TOI_surfaceg_orbit_standard_GJ163_nz250_1e17s.vul' # output file name
+out_name =  'VIH_TOI_fullchange_GJ163_nz250_1e17s.vul' # output file name
 
 # ====== For Long runs ======
 use_finalsmooth = 0
@@ -98,7 +98,7 @@ update_frq = 50
 # ====== Setting up the boundary conditions ======
 # Boundary Conditions:
 use_topflux = False
-use_botflux = False
+use_botflux = True
 use_fix_sp_bot = {'H2O':0.1, 'CO2':0.008} # fixed mixing ratios at the lower boundary
 diff_esc = ['H'] # species for diffusion-limit escape at TOA
 max_flux = 1e13  # upper limit for the diffusion-limit fluxes
@@ -192,8 +192,7 @@ use_finalsmooth = 0
 #====== Added ======#
 
 #Plot limits
-y_limits=(1, 1e-8)
+y_limits = (P_b/1.E6,P_t/1.E6)
 x_limits= (1e-10, 1)
 
-if y_limits== None:
-    y_limits = (P_b/1.E6,P_t/1.E6)
+
