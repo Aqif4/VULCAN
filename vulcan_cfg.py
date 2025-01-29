@@ -21,7 +21,7 @@ vul_ini =  'output/VIH_K2-18b_standard_GJ176_nz250_1e17s_2.vul' # the file to in
 output_dir = 'output/k218_to_toi/'
 plot_dir = 'plot/'
 movie_dir = 'plot/movie/'
-out_name =  'VIH_TOI_fullchange_GJ163_nz250_1e17s.vul' # output file name
+out_name =  'VUH_TOI_fullchange_GJ163_nz250_1e11s.vul' # output file name
 
 # ====== For Long runs ======
 use_finalsmooth = 0
@@ -98,7 +98,7 @@ update_frq = 50
 # ====== Setting up the boundary conditions ======
 # Boundary Conditions:
 use_topflux = False
-use_botflux = True
+use_botflux = False
 use_fix_sp_bot = {'H2O':0.1, 'CO2':0.008} # fixed mixing ratios at the lower boundary
 diff_esc = ['H'] # species for diffusion-limit escape at TOA
 max_flux = 1e13  # upper limit for the diffusion-limit fluxes
@@ -137,7 +137,7 @@ use_print_delta = False
 print_prog_num = 500  # print the progress every x steps
 dttry = 1.E-10
 trun_min = 1e2
-runtime = 1e17
+runtime = 1e11
 dt_min = 1.E-10
 #dt_max = 5e13
 dt_max = 1e14
