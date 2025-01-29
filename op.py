@@ -1056,8 +1056,9 @@ class Integration(object):
             return True
         elif para.count > vulcan_cfg.count_max:
             print ("After ------- %s seconds -------" % ( time.time()- para.start_time ) + ' s CPU time')
+            #This print statement was amended from the original to try and add the runtime reached 
             print ('Integration not completed...\nMaximal allowed steps exceeded (' + \
-            str (vulcan_cfg.count_max) + ')!')
+            str (vulcan_cfg.count_max) + '), '+str("{:.2e}".format(var.t)) +'s reached')
             para.end_case = 3
             return True
     

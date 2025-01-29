@@ -21,7 +21,7 @@ vul_ini =  'output/VIH_K2-18b_standard_GJ176_nz250_1e17s_2.vul' # the file to in
 output_dir = 'output/k218_to_toi/'
 plot_dir = 'plot/'
 movie_dir = 'plot/movie/'
-out_name =  'VUH_TOI_surfaceg_orbit_standard_GJ163_nz250_1e17s.vul' # output file name
+out_name =  'VIH_TOI_surfaceg_orbit_standard_GJ163_nz250_1e17s.vul' # output file name
 
 # ====== For Long runs ======
 use_finalsmooth = 0
@@ -98,7 +98,7 @@ update_frq = 50
 # ====== Setting up the boundary conditions ======
 # Boundary Conditions:
 use_topflux = False
-use_botflux = False
+use_botflux = True
 use_fix_sp_bot = {'H2O':0.1, 'CO2':0.008} # fixed mixing ratios at the lower boundary
 diff_esc = ['H'] # species for diffusion-limit escape at TOA
 max_flux = 1e13  # upper limit for the diffusion-limit fluxes

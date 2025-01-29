@@ -21,7 +21,7 @@ vul_ini =  'output/VIH_K2-18b_standard_GJ176_nz250_1e17s_2.vul' # the file to in
 output_dir = 'output/k218_to_toi/'
 plot_dir = 'plot/'
 movie_dir = 'plot/movie/'
-out_name =  'VUH_TOI_surfaceg_orbit_standard_GJ163_nz250_1e17s.vul' # output file name
+out_name =  'VUH_TOI_surfaceg_standard_GJ163_nz250_1e17s.vul' # output file name
 
 # ====== For Long runs ======
 use_finalsmooth = 0
@@ -47,7 +47,7 @@ use_photo = True
 # astronomy input
 r_star = 0.4445 # stellar radius in solar radius
 Rp = 1.3588E9 # Planetary radius (cm) (for computing gravity)
-orbit_radius = 0.0721 # planet-star distance in A.U.
+orbit_radius = 0.15910 # planet-star distance in A.U.
 sl_angle = 60 /180.*3.14159 # the zenith angle of the star in degree (usually 58 deg for the dayside average)
 f_diurnal = 0.5 # to account for the diurnal average of solar flux (i.e. 0.5 for Earth; 1 for tidally-locked planets)
 scat_sp = ['H2', 'He'] # the bulk gases that contribute to Rayleigh scattering
