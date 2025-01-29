@@ -22,9 +22,9 @@ r_sun = 6.957E10 # cm
 # GJ1214 is 47.5 light years away and has 0.2064 solar radius
 
 
-hdulist = fits.open('hlsp_muscles_multi_multi_gj1214_broadband_v22_adapt-const-res-sed.fits')
+hdulist = fits.open('hlsp_muscles_multi_multi_gj163_broadband_v23_const-res-sed.fits')
 print (hdulist.info())
-spec = fits.getdata('hlsp_muscles_multi_multi_gj1214_broadband_v22_adapt-const-res-sed.fits', 1)
+spec = fits.getdata('hlsp_muscles_multi_multi_gj163_broadband_v23_const-res-sed.fits', 1)
 
 # WAVELENGTH : midpoint of the wavelength bin in Angstroms
 # WAVELENGTH0: left (blue) edge of the wavelength bin in Angstroms
@@ -49,3 +49,6 @@ for n,wl in enumerate(spec['WAVELENGTH']):
 #             else: break
    
 with open('sflux-GJ1214.txt', 'w+') as f: f.write(new_str)   
+
+#Checklist before running:
+#Check input file, Check distance and radius, Check Output name
