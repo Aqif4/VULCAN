@@ -16,7 +16,7 @@ atm_file = 'atm/atm_K218b_Hy_WoganPT_10bar_plus70K_forTOI.txt' # TP and Kzz (opt
 sflux_file = 'atm/stellar_flux/sflux-GJ163.txt' # sflux-HD189_B2020.txt This is the flux density at the stellar surface
 top_BC_flux_file = 'atm/BC_top.txt' # the file for the top boundary conditions
 bot_BC_flux_file = 'atm/BC_bot_K218b_Wogan_life1.txt' # the file for the lower boundary conditions
-vul_ini =  'output/VIH_K2-18b_standard_GJ176_nz250_1e17s_2.vul' # the file to initialize the abundances for ini_mix = 'vulcan_ini'
+vul_ini =  'output/k218_to_toi/VUH_TOI_fullchange_GJ163_nz250_1e11s.vul' # the file to initialize the abundances for ini_mix = 'vulcan_ini'
 # output:
 output_dir = 'output/k218_to_toi/'
 plot_dir = 'plot/'
@@ -45,9 +45,9 @@ const_mix = {'CH4':1e-10, 'CO':1e-10, 'CO2': 0.008, 'O2':O_H*0.01, 'He':0.09691,
 # ====== Setting up photochemistry ======
 use_photo = True
 # astronomy input
-r_star = 0.4445 # stellar radius in solar radius
+r_star = 0.405 # stellar radius in solar radius
 Rp = 1.3588E9 # Planetary radius (cm) (for computing gravity)
-orbit_radius = 0.0721 # planet-star distance in A.U.
+orbit_radius = 0.07210 # planet-star distance in A.U.
 sl_angle = 60 /180.*3.14159 # the zenith angle of the star in degree (usually 58 deg for the dayside average)
 f_diurnal = 0.5 # to account for the diurnal average of solar flux (i.e. 0.5 for Earth; 1 for tidally-locked planets)
 scat_sp = ['H2', 'He'] # the bulk gases that contribute to Rayleigh scattering
@@ -83,7 +83,7 @@ Kzz_prof = 'const' # Options: 'const','file' or 'Pfunc' (Kzz increased with P^-0
 K_max = 5e5        # for Kzz_prof = 'Pfunc'
 K_p_lev = 0.1      # for Kzz_prof = 'Pfunc'
 vz_prof = 'const'  # Options: 'const' or 'file'
-gs = 1243.         # surface gravity (cm/s^2)  (HD189:2140  HD209:936)
+gs = 1031.66         # surface gravity (cm/s^2)  (HD189:2140  HD209:936)
 Tiso = 315 # only read when atm_type = 'isothermal'
 # setting the parameters for the analytical T-P from (126)in Heng et al. 2014. Only reads when atm_type = 'analytical'
 # T_int, T_irr, ka_L, ka_S, beta_S, beta_L
@@ -146,8 +146,8 @@ dt_var_min = 0.5
 count_min = 120
 count_max = 10000
 atol = 1.E0 # Try decreasing this if the solutions are not stable
-mtol = 1e-18 #1.E-20
-mtol_conv = 1e-14 #1.E-18
+mtol = 1e-17 #1.E-20
+mtol_conv = 1e-13 #1.E-18
 pos_cut = 0
 nega_cut = -1.
 loss_eps = 1
