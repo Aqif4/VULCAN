@@ -26,7 +26,7 @@ tableau20 = [(r / 255., g / 255., b / 255.) for r, g, b in tableau20]
 
 # Define error bar sets with central x and dx values in log scale, dx values should be positive
 error_bar_sets = {
-	'benneke_toi270d': {
+	'benneke_toi270d': { #Benneke et al. one offset
 		'CH4': {'x_center': -1.64, 'dx_pos': 0.38, 'dx_neg': 0.36, 'y': 0.05}, 
 		'CO2': {'x_center': -1.67, 'dx_pos': 0.40, 'dx_neg': 0.60, 'y': 0.1},
 		'H2O': {'x_center': -1.10, 'dx_pos': 0.31, 'dx_neg': 0.92, 'y': 0.01},
@@ -36,7 +36,7 @@ error_bar_sets = {
 		#'CS2': {'x_center': 0.25e-2, 'y': 0.05}
 
 	},
-	'madhu_toi270d': {
+	'madhu_toi270d': { #Madhu Holmberg 2023 one offset
 		'CH4': {'x_center': -2.44, 'dx_pos': 0.34, 'dx_neg': 0.46, 'y': 0.03}, 
 		'CO2': {'x_center': -1.96, 'dx_pos': 0.49, 'dx_neg': 0.79, 'y': 0.02},
 		'H2O': {'x_center': -1.56, 'y': 0.03},  
@@ -44,6 +44,17 @@ error_bar_sets = {
 		#'CS2': {'x_center': 0.25e-2, 'dx_pos': 0.1e-2, 'dx_neg': 0.05e-2, 'y': 0.05},
 		#'C2H6': {'x_center': 0.25e-2, 'dx_pos': 0.1e-2, 'dx_neg': 0.05e-2, 'y': 0.05},
 		'CO': {'x_center': -1.63, 'y': 0.05}
+	},
+	'cb_1': { #Carbon-bearing 2023 Madhu et al. one offset
+		'CH4': {'x_center': -1.74, 'dx_pos': 0.59, 'dx_neg': 0.69, 'y': 0.03}, 
+		'CO2': {'x_center': -2.09, 'dx_pos': 0.51, 'dx_neg': 0.94, 'y': 0.02},
+		'H2O': {'x_center': -3.06, 'y': 0.03},  
+		'NH3': {'x_center': -4.51, 'y': 0.05},
+		'CO': {'x_center': -3.5, 'y': 0.05}
+		#'DMS':{'x_center': -6.35, 'dx_pos': 1.59, 'dx_neg': -3.60, 'y': 0.05},
+		#'CH3CL':{'x_center': -3.80, 'y': 0.05},
+		#'HCN':{'x_center': -2.92, 'y': 0.05},
+		
 	},
 	# You can add more sets here
 }
