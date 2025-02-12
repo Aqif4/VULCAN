@@ -6,17 +6,17 @@ import os
 import pickle
 
 # Setting input arguments
-plot_spec = 'H2O,CH4,CO2,CO,NH3'  # Species to plot, separated by commas
-plot_name = 'mtol investigation with errors and upper bounds'  # Output plot name
+plot_spec = 'H2O,CH4,CO2,CO,NH3,CH3CL,HCN'  # Species to plot, separated by commas
+plot_name = 'Original Photochemical '  # Output plot name
 plot_dir = vulcan_cfg.plot_dir  # Assume it's defined correctly
 
 # Path to input files
-vul_files = ['output/mtol_test/K2-18b_GJ176_nz250_1e12s_greg.vul',
-			 'output/mtol_test/K2-18b_GJ176_nz250_1e12s_q.vul',
-			 'output/mtol_test/K2-18b_GJ176_nz250_1e12s_10q.vul']
+vul_files = ['output/VIH_K2-18b_standard_GJ176_nz250_1e17s_3.vul',
+			 'output/VUH_K2-18b_standard_GJ176_nz250.vul',
+			 ]
 
 # Titles and axis limits for each plot
-titles = ['1e-18', '1e-17', '1e-16']
+titles = ['Inhabited', 'Uninhabited',]
 axis_limits = [{'x_min': 1.E-10, 'x_max': 1, 'y_min': 0.5, 'y_max': 1.E-11}] * len(vul_files)
 
 # Color setup
@@ -42,25 +42,26 @@ error_bar_sets = {
 		'H2O': {'x_center': -1.56, 'y': 0.03},  
 		'NH3': {'x_center': -5.75, 'y': 0.05},
 		#'CS2': {'x_center': 0.25e-2, 'dx_pos': 0.1e-2, 'dx_neg': 0.05e-2, 'y': 0.05},
-		#'C2H6': {'x_center': 0.25e-2, 'dx_pos': 0.1e-2, 'dx_neg': 0.05e-2, 'y': 0.05},
+		'C2H6': {'x_center': 0.25e-2, 'dx_pos': 0.1e-2, 'dx_neg': 0.05e-2, 'y': 0.05},
 		'CO': {'x_center': -1.63, 'y': 0.05}
 	},
 	'cb_1': { #Carbon-bearing 2023 Madhu et al. one offset
-		'CH4': {'x_center': -1.74, 'dx_pos': 0.59, 'dx_neg': 0.69, 'y': 0.03}, 
-		'CO2': {'x_center': -2.09, 'dx_pos': 0.51, 'dx_neg': 0.94, 'y': 0.02},
-		'H2O': {'x_center': -3.06, 'y': 0.03},  
-		'NH3': {'x_center': -4.51, 'y': 0.05},
-		'CO': {'x_center': -3.5, 'y': 0.05}
+			  #y values from photosphere which is between 1e-2, 1e-4 (Cooke Considerations)
+		'CH4': {'x_center': -1.74, 'dx_pos': 0.59, 'dx_neg': 0.69, 'y': 0.5e-3}, 
+		'CO2': {'x_center': -2.09, 'dx_pos': 0.51, 'dx_neg': 0.94, 'y': 1.2e-3},
+		'H2O': {'x_center': -3.06, 'y': 0.5e-3},  
+		'NH3': {'x_center': -4.51, 'y': 1.6e-3},
+		'CO': {'x_center': -3.5, 'y': 1.8e-3},
 		#'DMS':{'x_center': -6.35, 'dx_pos': 1.59, 'dx_neg': -3.60, 'y': 0.05},
 		#'CH3CL':{'x_center': -3.80, 'y': 0.05},
-		#'HCN':{'x_center': -2.92, 'y': 0.05},
+		'HCN':{'x_center': -2.92, 'y': 4e-3},
 		
 	},
 	# You can add more sets here
 }
 
 # Error bar set
-error_bar_set = 'benneke_toi270d'  
+error_bar_set = 'cb_1'  
 
 # Use the selected error bar set
 species_error_data = error_bar_sets[error_bar_set]
@@ -110,13 +111,13 @@ for idx, (vul_file, title) in enumerate(zip(vul_files, titles)):
 			
 			if 'x_center' in error_data and 'dx_pos' in error_data and 'dx_neg' in error_data:
 				# Go back to base 10 for bounds
-				x_high = 10**(error_data['x_center'] + abs(error_data['dx_pos']))   
-				x_low =  10**(error_data['x_center'] - abs(error_data['dx_neg']))  
+				x_high = 10**(error_data['x_center']+abs(error_data['dx_pos']))  
+				x_low =  10**(error_data['x_center']-abs(error_data['dx_neg']))  
 				# Add asymmetric error bars using the transformed values
 				ax.errorbar(
 					x_center_10,  # Plot the log-transformed central x value
 					error_data['y'],
-					xerr=[[x_low], [x_high]],  
+					xerr=[[abs(x_center_10-x_low)], [abs(x_center_10-x_high)]],  
 					fmt='o',  # No markers
 					color=tableau20[color_index], 
 					markersize=5,
