@@ -16,12 +16,12 @@ atm_file = 'atm/atm_K218b_Hy_WoganPT_10bar_plus70K_forTOI.txt' # TP and Kzz (opt
 sflux_file = 'atm/stellar_flux/sflux-GJ163.txt' # sflux-HD189_B2020.txt This is the flux density at the stellar surface
 top_BC_flux_file = 'atm/BC_top.txt' # the file for the top boundary conditions
 bot_BC_flux_file = 'atm/BC_bot_K218b_Wogan_life1.txt' # the file for the lower boundary conditions
-vul_ini =  'output/k218_to_toi/VUH_TOI_fullchange_GJ163_nz250_1e11s.vul' # the file to initialize the abundances for ini_mix = 'vulcan_ini'
+vul_ini =  '' # the file to initialize the abundances for ini_mix = 'vulcan_ini'
 # output:
-output_dir = 'output/k218_to_toi/'
+output_dir = 'output/TOI_isothermal/'
 plot_dir = 'plot/'
 movie_dir = 'plot/movie/'
-out_name =  'VUH_TOI_fullchange_GJ163_nz250_1e11s.vul' # output file name
+out_name =  '305iso_uninhabited_5e5kzz_nz250_1e17s.vul' # output file name
 
 # ====== For Long runs ======
 use_finalsmooth = 0
@@ -39,7 +39,7 @@ He_H = 0.09692
 ini_mix = 'const_mix' # Options: 'EQ', 'const_mix', 'vulcan_ini', 'table' (for 'vulcan_ini, the T-P grids have to be exactly the same)
 fastchem_met_scale =  1 * factor # scaling factor for other elements in fastchem (e.g., if fastchem_met_scale = 0.1, other elements such as Si and Mg will take 0.1 solar values)
 
-# Initialsing uniform (constant with pressure) mixing ratios (only reads when ini_mix = const_mix)
+# Initialising uniform (constant with pressure) mixing ratios (only reads when ini_mix = const_mix)
 const_mix = {'CH4':1e-10, 'CO':1e-10, 'CO2': 0.008, 'O2':O_H*0.01, 'He':0.09691, 'H2O':0.1, 'N2':0.003, 'H2':0.85}
 
 # ====== Setting up photochemistry ======
@@ -78,13 +78,13 @@ P_t = 1e6 * 1e-11 # pressure at the top (dyne/cm^2)
 use_Kzz = True
 use_moldiff = True
 use_vz = False
-atm_type = 'file'  # Options: 'isothermal', 'analytical', 'file', or 'vulcan_ini' 'table'
+atm_type = 'isothermal'  # Options: 'isothermal', 'analytical', 'file', or 'vulcan_ini' 'table'
 Kzz_prof = 'const' # Options: 'const','file' or 'Pfunc' (Kzz increased with P^-0.4)
 K_max = 5e5        # for Kzz_prof = 'Pfunc'
 K_p_lev = 0.1      # for Kzz_prof = 'Pfunc'
 vz_prof = 'const'  # Options: 'const' or 'file'
 gs = 1031.66         # surface gravity (cm/s^2)  (HD189:2140  HD209:936)
-Tiso = 315 # only read when atm_type = 'isothermal'
+Tiso = 305.0 # only read when atm_type = 'isothermal'
 # setting the parameters for the analytical T-P from (126)in Heng et al. 2014. Only reads when atm_type = 'analytical'
 # T_int, T_irr, ka_L, ka_S, beta_S, beta_L
 para_warm = [120., 1500., 0.1, 0.02, 1., 1.]
@@ -116,7 +116,7 @@ use_condense = True
 use_settling = True
 start_conden_time = 0
 humidity = 1.0
-stop_conden_time = 1e7 # after this time to fix the condensable species, if wrong try 5e7
+stop_conden_time = 4e7 # after this time to fix the condensable species, if wrong try 5e7. This has now been increase to 1e9 after Winter
 condense_sp = ['H2O']
 non_gas_sp = ['H2O_l_s']
 r_p = {'H2O_l_s': 5e-3}  # particle radius in cm (1e-4 = 1 micron)
@@ -137,14 +137,14 @@ use_print_delta = False
 print_prog_num = 500  # print the progress every x steps
 dttry = 1.E-10
 trun_min = 1e2
-runtime = 1e11
+runtime = 1e17
 dt_min = 1.E-10
 #dt_max = 5e13
 dt_max = 1e14
 dt_var_max = 2.
 dt_var_min = 0.5
 count_min = 120
-count_max = 10000
+count_max = 20000
 atol = 1.E0 # Try decreasing this if the solutions are not stable
 mtol = 1e-17 #1.E-20
 mtol_conv = 1e-13 #1.E-18
