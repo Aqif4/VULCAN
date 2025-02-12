@@ -7,16 +7,17 @@ import pickle
 
 # Setting input arguments
 plot_spec = 'H2O,CH4,CO2,CO,NH3,CH3CL,HCN'  # Species to plot, separated by commas
-plot_name = 'Original Photochemical '  # Output plot name
+plot_name = 'vih_pt compared to carbon bearing '  # Output plot name
 plot_dir = vulcan_cfg.plot_dir  # Assume it's defined correctly
 
 # Path to input files
-vul_files = ['output/VIH_K2-18b_standard_GJ176_nz250_1e17s_3.vul',
-			 'output/VUH_K2-18b_standard_GJ176_nz250.vul',
+vul_files = ['output/vih_pt/K2-18b_GJ176_nz250_5e16s_plus25K.vul',
+			 'output/vih_pt/K2-18b_GJ176_nz250_1e17s_minus25K.vul',
+			 
 			 ]
 
 # Titles and axis limits for each plot
-titles = ['Inhabited', 'Uninhabited',]
+titles = ['Wogan+25', 'Wogan-25', '5', '10']
 axis_limits = [{'x_min': 1.E-10, 'x_max': 1, 'y_min': 0.5, 'y_max': 1.E-11}] * len(vul_files)
 
 # Color setup
