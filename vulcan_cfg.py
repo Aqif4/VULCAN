@@ -15,13 +15,13 @@ com_file = 'thermo/all_compose.txt'
 atm_file = 'atm/atm_K218b_Hy_WoganPT_10bar_plus70K_forTOI.txt' # TP and Kzz (optional) file
 sflux_file = 'atm/stellar_flux/sflux-GJ163.txt' # sflux-HD189_B2020.txt This is the flux density at the stellar surface
 top_BC_flux_file = 'atm/BC_top.txt' # the file for the top boundary conditions
-bot_BC_flux_file = 'atm/BC_bot_K218b_Wogan_life1.txt' # the file for the lower boundary conditions
-vul_ini =  '' # the file to initialize the abundances for ini_mix = 'vulcan_ini'
+bot_BC_flux_file = 'atm/BC_bot_K218b_Wogan_life1_C.txt' # the file for the lower boundary conditions
+vul_ini =  'output/TOI_winter/plus70_Life1C_5e5kzz_nz250_4e14s.vul' # the file to initialize the abundances for ini_mix = 'vulcan_ini'
 # output:
-output_dir = 'output/TOI_isothermal/'
+output_dir = 'output/TOI_winter/'
 plot_dir = 'plot/'
 movie_dir = 'plot/movie/'
-out_name =  '305iso_uninhabited_5e5kzz_nz250_1e17s.vul' # output file name
+out_name =  'plus70_Life1C_5e5kzz_nz250_1e17s.vul' # output file name
 
 # ====== For Long runs ======
 use_finalsmooth = 0
@@ -36,7 +36,7 @@ C_H = 2.7761E-4 * factor
 N_H = 8.1853E-5 * factor
 S_H = 1.3183E-5 * factor
 He_H = 0.09692
-ini_mix = 'const_mix' # Options: 'EQ', 'const_mix', 'vulcan_ini', 'table' (for 'vulcan_ini, the T-P grids have to be exactly the same)
+ini_mix = 'vulcan_ini' # Options: 'EQ', 'const_mix', 'vulcan_ini', 'table' (for 'vulcan_ini, the T-P grids have to be exactly the same)
 fastchem_met_scale =  1 * factor # scaling factor for other elements in fastchem (e.g., if fastchem_met_scale = 0.1, other elements such as Si and Mg will take 0.1 solar values)
 
 # Initialising uniform (constant with pressure) mixing ratios (only reads when ini_mix = const_mix)
@@ -78,7 +78,7 @@ P_t = 1e6 * 1e-11 # pressure at the top (dyne/cm^2)
 use_Kzz = True
 use_moldiff = True
 use_vz = False
-atm_type = 'isothermal'  # Options: 'isothermal', 'analytical', 'file', or 'vulcan_ini' 'table'
+atm_type = 'file'  # Options: 'isothermal', 'analytical', 'file', or 'vulcan_ini' 'table'
 Kzz_prof = 'const' # Options: 'const','file' or 'Pfunc' (Kzz increased with P^-0.4)
 K_max = 5e5        # for Kzz_prof = 'Pfunc'
 K_p_lev = 0.1      # for Kzz_prof = 'Pfunc'
@@ -98,7 +98,7 @@ update_frq = 50
 # ====== Setting up the boundary conditions ======
 # Boundary Conditions:
 use_topflux = False
-use_botflux = False
+use_botflux = True
 use_fix_sp_bot = {'H2O':0.1, 'CO2':0.008} # fixed mixing ratios at the lower boundary
 diff_esc = ['H'] # species for diffusion-limit escape at TOA
 max_flux = 1e13  # upper limit for the diffusion-limit fluxes
@@ -116,7 +116,7 @@ use_condense = True
 use_settling = True
 start_conden_time = 0
 humidity = 1.0
-stop_conden_time = 4e7 # after this time to fix the condensable species, if wrong try 5e7. This has now been increase to 1e9 after Winter
+stop_conden_time = 1e9 # after this time to fix the condensable species, if wrong try 5e7. This has now been increased to 1e8 after Winter
 condense_sp = ['H2O']
 non_gas_sp = ['H2O_l_s']
 r_p = {'H2O_l_s': 5e-3}  # particle radius in cm (1e-4 = 1 micron)

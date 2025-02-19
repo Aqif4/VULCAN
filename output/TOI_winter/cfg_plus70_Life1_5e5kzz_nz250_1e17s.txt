@@ -116,7 +116,7 @@ use_condense = True
 use_settling = True
 start_conden_time = 0
 humidity = 1.0
-stop_conden_time = 1e8 # after this time to fix the condensable species, if wrong try 5e7. This has now been increased to 1e8 after Winter
+stop_conden_time = 1e9 # after this time to fix the condensable species, if wrong try 5e7. This has now been increased to 1e9 after Winter
 condense_sp = ['H2O']
 non_gas_sp = ['H2O_l_s']
 r_p = {'H2O_l_s': 5e-3}  # particle radius in cm (1e-4 = 1 micron)
