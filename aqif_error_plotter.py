@@ -7,19 +7,25 @@ import pickle
 
 # Setting input arguments
 plot_spec = 'H2O,CH4,CO2,CO,NH3,C2H6'  # Species to plot, separated by commas
-plot_name = ''  # Output plot name
+plot_name = 'TOI_toi270d_PT_Madhu'  # Output plot name
 plot_dir = vulcan_cfg.plot_dir  # Assume it's defined correctly
 
 # Path to input files
-vul_files = ['output/TOI_isothermal/387iso_uninhabited_5e5kzz_nz250_1e17s.vul',
-'output/TOI_isothermal/387iso_uninhabited_5e5kzz_nz250_1e17s.vul',
-'output/TOI_isothermal/387iso_Life1_5e5kzz_nz250_1e17s.vul',
-'output/TOI_isothermal/387iso_Life1_5e5kzz_nz250_1e17s.vul']
+vul_files = ['output/TOI_toi270d_PT/A_Life1_5e5kzz_nz250_1e17s.vul',
+'output/TOI_toi270d_PT/B_Life1_5e5kzz_nz250_1e17s.vul',
+'output/TOI_toi270d_PT/C_Life1_5e5kzz_nz250_1e17s.vul',
+'output/TOI_toi270d_PT/D_Life1_5e5kzz_nz250_1e17s.vul',
+'output/TOI_toi270d_PT/E_Life1_5e5kzz_nz250_1e17s.vul',
+'output/TOI_toi270d_PT/F_Life1_5e5kzz_nz250_1e17s.vul',
+'output/TOI_toi270d_PT/G_Life1_5e5kzz_nz250_1e17s.vul',
+'output/TOI_toi270d_PT/H_Life1_5e5kzz_nz250_1e17s.vul',]
+
+
 
 # Titles and axis limits for each plot
-titles = ['Uninhabited Benneke', 'Uninhabited Madhu', 'Inhabited Benneke', 'Inhabited Madhu']
+titles = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
 # Specify error bar sets for each plot
-error_bar_sets_per_plot = ['benneke', 'madhu', 'benneke', 'madhu']
+error_bar_sets_per_plot = ['madhu']*8
 axis_limits = [{'x_min': 1.E-10, 'x_max': 1, 'y_min': 0.5, 'y_max': 1.E-11}] * len(vul_files)
 
 # Color setup
