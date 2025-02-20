@@ -7,17 +7,23 @@ import pickle
 
 # Setting input arguments
 plot_spec = 'H2O,CH4,CO2,CO,NH3,CH3CL,HCN'  # Species to plot, separated by commas
-plot_name = 'vih_pt compared to carbon bearing '  # Output plot name
+plot_name = 'vih_kzz cb_1 full length '  # Output plot name
 plot_dir = vulcan_cfg.plot_dir  # Assume it's defined correctly
 
 # Path to input files
-vul_files = ['output/vih_pt/K2-18b_GJ176_nz250_5e16s_plus25K.vul',
-			 'output/vih_pt/K2-18b_GJ176_nz250_1e17s_minus25K.vul',
+vul_files = ['output/vih_kzz/K2-18b_GJ176_nz250_2_5e16s_kzz_1e3.vul',
+'output/vih_kzz/K2-18b_GJ176_nz250_8e15s_kzz_1e4_2.vul',
+
+			 'output/vih_kzz/K2-18b_GJ176_nz250_3e16s_kzz_1e5.vul',
+    'output/VIH_K2-18b_standard_GJ176_nz250_1e17s_3.vul',
+    'output/vih_kzz/K2-18b_GJ176_nz250_6e16s_kzz_1e6.vul',
+    'output/vih_kzz/K2-18b_GJ176_nz250_5e16s_kzz_1e7.vul',
+  
 			 
 			 ]
 
 # Titles and axis limits for each plot
-titles = ['Wogan+25', 'Wogan-25', '5', '10']
+titles = ['1e3', '1e4', '1e5', 'original', '1e6', '1e7']
 axis_limits = [{'x_min': 1.E-10, 'x_max': 1, 'y_min': 0.5, 'y_max': 1.E-11}] * len(vul_files)
 
 # Color setup
