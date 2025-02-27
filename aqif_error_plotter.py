@@ -7,7 +7,7 @@ import pickle
 
 # Setting input arguments
 plot_spec = 'H2O,CH4,CO2,CO,NH3,C2H6'  # Species to plot, separated by commas
-plot_name = 'TOI_toi270d_PT_Madhu'  # Output plot name
+plot_name = 'TOI_toi270d_PT_Holmberg'  # Output plot name
 plot_dir = vulcan_cfg.plot_dir  # Assume it's defined correctly
 
 # Path to input files
@@ -25,7 +25,7 @@ vul_files = ['output/TOI_toi270d_PT/A_Life1_5e5kzz_nz250_1e17s.vul',
 # Titles and axis limits for each plot
 titles = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
 # Specify error bar sets for each plot
-error_bar_sets_per_plot = ['madhu']*8
+error_bar_sets_per_plot = ['holmberg']*8
 axis_limits = [{'x_min': 1.E-10, 'x_max': 1, 'y_min': 0.5, 'y_max': 1.E-11}] * len(vul_files)
 
 # Color setup
@@ -44,14 +44,14 @@ error_bar_sets = {
         'SO2': {'x_center': -4.39,'dx_pos': 1.01, 'dx_neg': 3.33,'y': 2.0e-3},
         'CS2': {'x_center': -3.44,'dx_pos': 0.66, 'dx_neg': 0.67,'y': 2.2e-3}
     },
-    'madhu': { #1 offset from madhu and Holberg 2024 Table 1
-        'CH4': {'x_center': -2.44, 'dx_pos': 0.34, 'dx_neg': 0.46, 'y': 0.5e-3},
-        'CO2': {'x_center': -1.96, 'dx_pos': 0.49, 'dx_neg': 0.79, 'y': 1.5e-3},
-        'H2O': {'x_center': -1.56, 'y': 1e-3},
-        'NH3': {'x_center': -5.75, 'y': 1.6e-3},
-        'CS2': {'x_center': -2.59, 'dx_pos': 0.67, 'dx_neg': 0.95,'y': 1.8e-3},
-        'C2H6': {'x_center': -1.23, 'y': 2.0e-3},
-        'CO': {'x_center': -1.63, 'y': 3e-3}
+    'holmberg': { #1 offset from madhu and Holberg 2024 Table 1
+        'CH4': {'x_center': -2.72, 'dx_pos': 0.41, 'dx_neg': 0.50, 'y': 0.5e-3},
+        'CO2': {'x_center': -2.46, 'dx_pos': 0.71, 'dx_neg': 0.92, 'y': 1.5e-3},
+        'H2O': {'x_center': -1.91, 'dx_pos': 0.57, 'dx_neg': 0.94, 'y': 1e-3},
+        'NH3': {'x_center': -5.96,'y': 1.6e-3},
+        'CS2': {'x_center': -3.07, 'dx_pos': 0.74, 'dx_neg': 0.91,'y': 1.8e-3},
+        'C2H6': {'x_center': -1.72, 'y': 2.0e-3},
+        'CO': {'x_center': -2.7, 'y': 3e-3}
     },
 }
 
