@@ -11,15 +11,12 @@ plot_name = 'vih_pt -25 to +75'  # Output plot name
 plot_dir = vulcan_cfg.plot_dir  # Assume it's defined correctly
 
 # Path to input files
-vul_files = ['output/vih_pt/K2-18b_GJ176_nz250_1e17s_minus25K.vul',
-'output/vih_pt/K2-18b_GJ176_nz250_5e16s_plus25K.vul',
-'output/vih_pt/K2-18b_GJ176_nz250_1e17s_plus50K.vul',
-'output/vih_pt/K2-18b_GJ176_nz250_1e17s_plus75K.vul',
+vul_files = ['output/Wogan_EQ/IoA_3_K2-18b_Inhab_GJ176_nz250_1e17_100metal_EQ.vul'
 			 
 			 ]
 
 # Titles and axis limits for each plot
-titles = ['-25K', '+25K', '+50K', '+75K']
+titles = ['IoA', '+25K', '+50K', '+75K']
 axis_limits = [{'x_min': 1.E-10, 'x_max': 1, 'y_min': 0.5, 'y_max': 1.E-11}] * len(vul_files)
 
 # Color setup
