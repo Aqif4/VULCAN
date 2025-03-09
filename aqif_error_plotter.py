@@ -7,19 +7,15 @@ import pickle
 
 # Setting input arguments
 plot_spec = 'H2O,CH4,CO2,CO,NH3,CH3CL,HCN'  # Species to plot, separated by commas
-plot_name = 'vih_pt -25 to +75'  # Output plot name
+plot_name = 'Mac_2_Wogan_EQ'  # Output plot name
 plot_dir = vulcan_cfg.plot_dir  # Assume it's defined correctly
-
-# Path to input files
-vul_files = ['output/vih_pt/K2-18b_GJ176_nz250_1e17s_minus25K.vul',
-'output/vih_pt/K2-18b_GJ176_nz250_5e16s_plus25K.vul',
-'output/vih_pt/K2-18b_GJ176_nz250_1e17s_plus50K.vul',
-'output/vih_pt/K2-18b_GJ176_nz250_1e17s_plus75K.vul',
+error_bar_set = 'cb_1' 
+vul_files = ['output/Wogan_EQ/MAC_2_K2-18b_Inhab_GJ176_nz250_1e17s_100metal_EQ.vul'
 			 
 			 ]
+titles = ['MAC']
 
 # Titles and axis limits for each plot
-titles = ['-25K', '+25K', '+50K', '+75K']
 axis_limits = [{'x_min': 1.E-10, 'x_max': 1, 'y_min': 0.5, 'y_max': 1.E-11}] * len(vul_files)
 
 # Color setup
@@ -29,25 +25,7 @@ tableau20 = [(r / 255., g / 255., b / 255.) for r, g, b in tableau20]
 
 # Define error bar sets with central x and dx values in log scale, dx values should be positive
 error_bar_sets = {
-	'benneke_toi270d': { #Benneke et al. one offset
-		'CH4': {'x_center': -1.64, 'dx_pos': 0.38, 'dx_neg': 0.36, 'y': 0.05}, 
-		'CO2': {'x_center': -1.67, 'dx_pos': 0.40, 'dx_neg': 0.60, 'y': 0.1},
-		'H2O': {'x_center': -1.10, 'dx_pos': 0.31, 'dx_neg': 0.92, 'y': 0.01},
-		'CO': {'x_center': -1.46,'y': 0.02},
-		'NH3': {'x_center': -4.27,'y': 0.03}#,
-		#'SO2': {'x_center': 0.25e-2, 'y': 0.05},
-		#'CS2': {'x_center': 0.25e-2, 'y': 0.05}
 
-	},
-	'madhu_toi270d': { #Madhu Holmberg 2023 one offset
-		'CH4': {'x_center': -2.44, 'dx_pos': 0.34, 'dx_neg': 0.46, 'y': 0.03}, 
-		'CO2': {'x_center': -1.96, 'dx_pos': 0.49, 'dx_neg': 0.79, 'y': 0.02},
-		'H2O': {'x_center': -1.56, 'y': 0.03},  
-		'NH3': {'x_center': -5.75, 'y': 0.05},
-		#'CS2': {'x_center': 0.25e-2, 'dx_pos': 0.1e-2, 'dx_neg': 0.05e-2, 'y': 0.05},
-		'C2H6': {'x_center': 0.25e-2, 'dx_pos': 0.1e-2, 'dx_neg': 0.05e-2, 'y': 0.05},
-		'CO': {'x_center': -1.63, 'y': 0.05}
-	},
 	'cb_1': { #Carbon-bearing 2023 Madhu et al. one offset
 			  #y values from photosphere which is between 1e-2, 1e-4 (Cooke Considerations)
 		'CH4': {'x_center': -1.74, 'dx_pos': 0.59, 'dx_neg': 0.69, 'y': 0.5e-3}, 
@@ -62,10 +40,7 @@ error_bar_sets = {
 	},
 	# You can add more sets here
 }
-
-# Error bar set
-error_bar_set = 'cb_1'  
-
+ 
 # Use the selected error bar set
 species_error_data = error_bar_sets[error_bar_set]
 
