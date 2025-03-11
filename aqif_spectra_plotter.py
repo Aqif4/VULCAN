@@ -1,16 +1,18 @@
-import matplotlib.pyplot as plt # type: ignore
+import matplotlib.pyplot as plt 
 import os
 
 # Specify the input and output directories
 input_dir = "atm/stellar_flux/"  # Change this to your actual input directory
 output_dir = "plot/stellar_flux/"  # Change this to your actual output directory
-output_filename = "GJ-176_0.3_albedo_var_vs_const.png"  # Name of the saved plot
+output_filename = "GJ-176_albedos.png"  # Name of the saved plot
 plot_title=''
 
 # List of input files and corresponding legend labels
 files = [
-    ("sflux-GJ176_from_muscles_var_0.3_albedo.txt", "var"),
-    ("sflux-GJ176_from_muscles_0.3_albedo.txt", "const"),
+    ("sflux-GJ176_K2-18b_0.9_albedo.txt", "0.9"),
+    ("sflux-GJ176_K2-18b_0.7_albedo.txt", "0.7"),
+    ("sflux-GJ176_K2-18b_0.5_albedo.txt", "0.5"),
+    ("sflux-GJ176_K2-18b_0.3_albedo.txt", "0.3"),
     # Add more files as needed
 ]
 
