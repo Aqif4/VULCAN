@@ -161,7 +161,7 @@ conver_ignore = ['HC3N'] # added 2023. to get rid off non-convergent species, e.
 
 # ====== Setting up numerical parameters for Ros2 ODE solver ======
 rtol = 0.2           # relative tolerence for adjusting the stepsize
-post_conden_rtol = 2.5 # switched to this value after fix_species_time, was 2 greg suggested 2.5
+post_conden_rtol = 2.5 # switched to this value after fix_species_time
 
 # ====== Setting up for ouwtput and plotting ======
 # plotting:

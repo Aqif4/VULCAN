@@ -7,13 +7,14 @@ import pickle
 
 # Setting input arguments
 plot_spec = 'H2O,CH4,CO2,CO,NH3,CH3CL,HCN'  # Species to plot, separated by commas
-plot_name = 'IoA_vs_Mac_F'  # Output plot name
+plot_name = 'IoA_vs_Mac_1e7'  # Output plot name
 plot_dir = vulcan_cfg.plot_dir if hasattr(vulcan_cfg, 'plot_dir') else 'path/to/your/plot/directory'  # Ensure plot_dir is set
 error_bar_set = 'cb_1'  
 use_dotted = [False, True]  # True for datasets you want dotted, matching the order of vul_files
-vul_files = ['output/Wogan_EQ/Mac_F_K2-18b_Inhab_GJ176_nz250_2e13_100metal_EQ.vul',
-             'output/Wogan_EQ/IoA_3_K2-18b_Inhab_GJ176_nz250_1e17_postcond_100metal_EQ.vul']
-titles = ['Mac', 'IoA'] 
+vul_files = ['output/Wogan_EQ/IoA_F_K2-18b_Inhab_GJ176_nz250_1e7_100metal_EQ.vul',
+             'output/Wogan_EQ/Mac_F_K2-18b_Inhab_GJ176_nz250_1e7_100metal_EQ.vul']
+titles = ['IoA', 'Mac'] 
+plot_title=''
 
 # Color setup
 tableau20 = [(31, 119, 180), (255, 127, 14), (44, 160, 44), (214, 39, 40), (148, 103, 189),
