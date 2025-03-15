@@ -13,15 +13,15 @@ gibbs_text = 'thermo/gibbs_text.txt' # (all the nasa9 files must be placed in th
 cross_folder = 'thermo/photo_cross/'
 com_file = 'thermo/all_compose.txt'
 atm_file = 'atm/atm_K218b_Hy_M23_PT_100bar(PT3).txt' # TP and Kzz (optional) file
-sflux_file = 'atm/stellar_flux/sflux-GJ176_K2-18b_0.9_albedo.txt' # This is the flux density at the stellar surface
+sflux_file = 'atm/stellar_flux/sflux-GJ176_K2-18b_0.3_albedo.txt' # This is the flux density at the stellar surface
 top_BC_flux_file = 'atm/BC_top.txt' # the file for the top boundary conditions
-bot_BC_flux_file = 'atm/BC_bot_K218b_Wogan_life1.txt' # the file for the lower boundary conditions
-vul_ini =  'output/Albedo_Surface/1e13/UH_K2-18b_GJ176_75bar_1e13s_100metal_PT3.vul' # the file to initialize the abundances for ini_mix = 'vulcan_ini'
+bot_BC_flux_file = '' # the file for the lower boundary conditions
+vul_ini =  '' # the file to initialize the abundances for ini_mix = 'vulcan_ini'
 # output:
-output_dir = 'output/Albedo_Surface/1e17/'
+output_dir = 'output/Albedo_Surface/1e13/'
 plot_dir = 'plot/'
 movie_dir = 'plot/movie/'
-out_name =  'UH_K2-18b_GJ176_0.9_albedo_75bar_1e17s_100metal.vul' # output file name
+out_name =  'UH_K2-18b_GJ176_75bar_1e13s_100metal_PT3.vul' # output file name
 
 # ====== For Long runs ======
 use_finalsmooth = 0
@@ -36,7 +36,7 @@ C_H = 2.7761E-4 * factor
 N_H = 8.1853E-5 * factor
 S_H = 1.3183E-5 * factor
 He_H = 0.09692
-ini_mix = 'vulcan_ini' # Options: 'EQ', 'const_mix', 'vulcan_ini', 'table' (for 'vulcan_ini, the T-P grids have to be exactly the same)
+ini_mix = 'EQ' # Options: 'EQ', 'const_mix', 'vulcan_ini', 'table' (for 'vulcan_ini, the T-P grids have to be exactly the same)
 fastchem_met_scale =  1 * factor # scaling factor for other elements in fastchem (e.g., if fastchem_met_scale = 0.1, other elements such as Si and Mg will take 0.1 solar values)
 
 # Initialsing uniform (constant with pressure) mixing ratios (only reads when ini_mix = const_mix)
@@ -47,8 +47,7 @@ use_photo = True
 # astronomy input
 r_star = 0.4445 # stellar radius in solar radius
 Rp = 16.63E8 # Planetary radius (cm) (for computing gravity)
-orbit_radius = 0.15910 # planet-star distance in A.U. 
-#K2-18b: a=0.15190 from Benneke 2019
+orbit_radius = 0.15910 # planet-star distance in A.U.
 sl_angle = 60 /180.*3.14159 # the zenith angle of the star in degree (usually 58 deg for the dayside average)
 f_diurnal = 0.5 # to account for the diurnal average of solar flux (i.e. 0.5 for Earth; 1 for tidally-locked planets)
 scat_sp = ['H2', 'He'] # the bulk gases that contribute to Rayleigh scattering
@@ -74,7 +73,7 @@ if use_photo == False and use_ion == True:
 atm_base = 'H2' #Options: 'H2', 'N2', 'O2', 'CO2 -- the bulk gas of the atmosphere: changes the molecular diffsion, thermal diffusion factor, and settling velocity
 rocky = False # for the surface gravity
 nz = 250   # number of vertical layers
-P_b = 1e6 * 75  # pressure at the bottom (dyne/cm^2)
+P_b = 1e6 * 75 # pressure at the bottom (dyne/cm^2)
 P_t = 1e6 * 1e-11 # pressure at the top (dyne/cm^2)
 use_Kzz = True
 use_moldiff = True
@@ -84,7 +83,7 @@ Kzz_prof = 'const' # Options: 'const','file' or 'Pfunc' (Kzz increased with P^-0
 K_max = 5e5        # for Kzz_prof = 'Pfunc'
 K_p_lev = 0.1      # for Kzz_prof = 'Pfunc'
 vz_prof = 'const'  # Options: 'const' or 'file'
-gs = 1243.         # surface gravity (cm/s^2)  (HD189:2140  HD209:936 K2-18b:1243 Benneke 2019)
+gs = 1243.         # surface gravity (cm/s^2)  (HD189:2140  HD209:936)
 Tiso = 315 # only read when atm_type = 'isothermal'
 # setting the parameters for the analytical T-P from (126)in Heng et al. 2014. Only reads when atm_type = 'analytical'
 # T_int, T_irr, ka_L, ka_S, beta_S, beta_L
@@ -100,7 +99,7 @@ update_frq = 50
 # Boundary Conditions:
 use_topflux = False
 use_botflux = False
-use_fix_sp_bot =  {'H2O':0.1, 'CO2':3e-3} #0.008(for VIH Wogan)} # fixed mixing ratios at the lower boundary
+use_fix_sp_bot = {'H2O':0.1, 'CO2':3e-3} # fixed mixing ratios at the lower boundary
 diff_esc = ['H'] # species for diffusion-limit escape at TOA
 max_flux = 1e13  # upper limit for the diffusion-limit fluxes
 use_sat_surfaceH2O = True
@@ -117,7 +116,7 @@ use_condense = True
 use_settling = True
 start_conden_time = 0
 humidity = 1.0
-stop_conden_time = 5e7 # after this time to fix the condensable species, if wrong try 5e7
+stop_conden_time = 1e7 # after this time to fix the condensable species, if wrong try 5e7
 condense_sp = ['H2O']
 non_gas_sp = ['H2O_l_s']
 r_p = {'H2O_l_s': 5e-3}  # particle radius in cm (1e-4 = 1 micron)
@@ -138,7 +137,7 @@ use_print_delta = False
 print_prog_num = 500  # print the progress every x steps
 dttry = 1.E-10
 trun_min = 1e2
-runtime = 1e17
+runtime = 1e13
 dt_min = 1.E-10
 #dt_max = 5e13
 dt_max = 1e15
@@ -167,7 +166,7 @@ post_conden_rtol = 2.5 # switched to this value after fix_species_time, was 2 gr
 # ====== Setting up for ouwtput and plotting ======
 # plotting:
 plot_TP = False
-use_live_plot = True
+use_live_plot = False
 use_live_flux = False
 use_plot_end = False
 use_plot_evo = False
@@ -178,7 +177,7 @@ use_PIL = True
 live_plot_frq = 10
 save_movie_rate = live_plot_frq
 y_time_freq = 500  #  storing data for every 'y_time_freq' step
-plot_spec = ['H2O', 'CH4', 'CO2', 'CO','NH3']
+plot_spec = ['H2O', 'CH4', 'CO2', 'CO', 'C2H2', 'HCN', 'NH3']
 # output:
 output_humanread = False
 use_shark = False

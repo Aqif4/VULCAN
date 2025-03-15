@@ -99,7 +99,7 @@ update_frq = 50
 # Boundary Conditions:
 use_topflux = False
 use_botflux = False
-use_fix_sp_bot = {'H2O':0.1, 'CO2':0.008} # fixed mixing ratios at the lower boundary
+use_fix_sp_bot = {'H2O':0.1, 'CO2':1e-3} # fixed mixing ratios at the lower boundary
 diff_esc = ['H'] # species for diffusion-limit escape at TOA
 max_flux = 1e13  # upper limit for the diffusion-limit fluxes
 use_sat_surfaceH2O = True
