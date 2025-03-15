@@ -8,15 +8,18 @@ import pickle
 
 # Setting input arguments
 plot_spec = 'H2O,CH4,CO2,CO,NH3,CH3CL,HCN'  # Species to plot, separated by commas
-plot_name = 'AS_0.7_vs_0.9_albedo_75bar' # Output plot name
+plot_name = 'AS_new_EQ_1e13' # Output plot name
 plot_dir = vulcan_cfg.plot_dir if hasattr(vulcan_cfg, 'plot_dir') else 'path/to/your/plot/directory'  # Ensure plot_dir is set
 error_bar_set = 'cb_1'
-vul_files = ['output/Albedo_Surface/1e17/UH_K2-18b_GJ176_0.7_albedo_75bar_1e17s_100metal.vul',
-             'output/Albedo_Surface/1e17/UH_K2-18b_GJ176_0.9_albedo_75bar_1e17s_100metal.vul',
+vul_files = ['output/Albedo_Surface/1e13/UH_K2-18b_GJ176_1bar_1e13s_100metal_PT3.vul',
+             'output/Albedo_Surface/1e13/UH_K2-18b_GJ176_25bar_1e13s_100metal_PT3.vul',
+             'output/Albedo_Surface/1e13/UH_K2-18b_GJ176_50bar_1e13s_100metal_PT3.vul',
+             'output/Albedo_Surface/1e13/UH_K2-18b_GJ176_75bar_1e13s_100metal_PT3.vul',
+             
              
            
              ]
-titles = ['0.7 albedo', '0.9 albedo', '50 bar', '75 bar']
+titles = ['1 bar', '25 bar', '50 bar', '75 bar']
 plot_title = 'Comparing albedos at 75 bar'
 
 # Line styles for each dataset (extend as needed)
