@@ -4,16 +4,18 @@ import os
 # Specify the input and output directories
 input_dir = "atm/stellar_flux/"  # Change this to your actual input directory
 output_dir = "plot/stellar_flux/"  # Change this to your actual output directory
-output_filename = "GJ-176_albedos.png"  # Name of the saved plot
-plot_title=''
+output_filename = "GJ-176_vs_GJ-436_100-200nm.png"  # Name of the saved plot
+plot_title = 'GJ-436 and GJ-176 between 100-200nm from MUSCLES'
 
-# List of input files and corresponding legend labels
+# Define the wavelength range (in nm)
+min_wavelength = 100  # Set lower limit
+max_wavelength = 200  # Set upper limit
+
+# List of input files, legend labels, and corresponding line styles
 files = [
-    ("sflux-GJ176_K2-18b_0.9_albedo.txt", "0.9"),
-    ("sflux-GJ176_K2-18b_0.7_albedo.txt", "0.7"),
-    ("sflux-GJ176_K2-18b_0.5_albedo.txt", "0.5"),
-    ("sflux-GJ176_K2-18b_0.3_albedo.txt", "0.3"),
-    # Add more files as needed
+    ("sflux-GJ176_from_muscles.txt", "GJ-176", "-"),   # Solid line
+    ("sflux-GJ436_from_muscles.txt", "GJ-436", "--")   # Dashed line
+    # Add more files as needed, e.g., ("filename.txt", "label", "linestyle")
 ]
 
 # Colors for each spectrum line
@@ -23,7 +25,7 @@ colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k']
 plt.figure(figsize=(8, 6))
 
 # Loop through each file and plot it
-for i, (filename, legend_label) in enumerate(files):
+for i, (filename, legend_label, line_style) in enumerate(files):
     filepath = os.path.join(input_dir, filename)
 
     # Initialize lists for wavelength (WL) and flux data for each file
@@ -36,12 +38,22 @@ for i, (filename, legend_label) in enumerate(files):
             next(file)  # Skip the first line
             for line in file:
                 parts = line.split()
-                wavelength.append(float(parts[0]))
-                flux.append(float(parts[1]))
+                wl = float(parts[0])
+                f = float(parts[1])
+                
+                # Collect data within the specified range
+                if min_wavelength <= wl <= max_wavelength:
+                    wavelength.append(wl)
+                    flux.append(f)
         
+        # Check if data was collected in the range
+        if not wavelength:
+            print(f"No data in the specified range for {filename}. Skipping.")
+            continue
+
         # Plot the current spectrum
         color = colors[i % len(colors)]  # Cycle through colors if more files than colors
-        plt.plot(wavelength, flux, color=color, linestyle='-', label=legend_label)
+        plt.plot(wavelength, flux, color=color, linestyle=line_style, label=legend_label)
 
     except FileNotFoundError:
         print(f"File {filepath} not found. Skipping.")

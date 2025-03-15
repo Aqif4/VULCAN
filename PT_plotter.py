@@ -10,7 +10,7 @@ output_name = 'Wogan_2024'
 input_files = [
     'atm/atm_K218b_Hy_WoganPT_10bar.txt', 
     'atm/atm_K218b_Hy_WoganPT.txt', 
-    'atm/atm_K218b_Hy_M23_PT_100bar.txt'
+    'atm/atm_K218b_Hy_M23_PT_100bar(PT3).txt'
 ]
 
 # Legend labels
