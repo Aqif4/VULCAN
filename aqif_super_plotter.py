@@ -8,18 +8,19 @@ import pickle
 
 # Setting input arguments
 plot_spec = 'H2O,CH4,CO2,CO,NH3,CH3CL,HCN'  # Species to plot, separated by commas
-plot_name = '0.9_50bar_vs_75bar_1e17s' # Output plot name
+plot_name = 'AS_0.7_vs_0.9_albedo_75bar' # Output plot name
 plot_dir = vulcan_cfg.plot_dir if hasattr(vulcan_cfg, 'plot_dir') else 'path/to/your/plot/directory'  # Ensure plot_dir is set
 error_bar_set = 'cb_1'
-vul_files = ['output/Albedo_Surface/1e17/UH_K2-18b_GJ176_0.9_albedo_50bar_1e17s_100metal.vul',
+vul_files = ['output/Albedo_Surface/1e17/UH_K2-18b_GJ176_0.7_albedo_75bar_1e17s_100metal.vul',
              'output/Albedo_Surface/1e17/UH_K2-18b_GJ176_0.9_albedo_75bar_1e17s_100metal.vul',
+             
            
              ]
-titles = ['50 bar', '75 bar', '50 bar', '75 bar']
-plot_title = '0.9 albedo, 50 bar and 75 bar 1e17s'
+titles = ['0.7 albedo', '0.9 albedo', '50 bar', '75 bar']
+plot_title = 'Comparing albedos at 75 bar'
 
 # Line styles for each dataset (extend as needed)
-line_styles = ['-', '--', ':', '-.']  # Solid, dashed, dotted, dash-dot
+line_styles = ['-', '--', '-.', ':']  # Solid, dashed, dash-dot, dot
 
 # Color setup (Tableau 20 colors)
 tableau20 = [(31, 119, 180), (255, 127, 14), (44, 160, 44), (214, 39, 40), (148, 103, 189),
