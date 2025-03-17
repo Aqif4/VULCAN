@@ -10,7 +10,7 @@ import pickle
 plot_spec = 'H2O,CH4,CO2,CO,NH3,CH3CL,HCN'  # Species to plot, separated by commas
 plot_name = 'vuh_kzz_all' # Output plot name
 plot_dir = vulcan_cfg.plot_dir if hasattr(vulcan_cfg, 'plot_dir') else 'path/to/your/plot/directory'  # Ensure plot_dir is set
-error_bar_set = 'cb_1'
+error_bar_set = 'holmberg'
 vul_files = [
              'output/vuh_kzz/K2-18b_GJ176_nz250_1e17s_kzz_1e3.vul',
              'output/vuh_kzz/K2-18b_GJ176_nz250_1e17s_kzz_1e4.vul',
@@ -40,13 +40,23 @@ tex_labels = {
 
 # Error bar configurations
 error_bar_sets = {
-    'cb_1': {
-        'CH4': {'x_center': -1.74, 'dx_pos': 0.59, 'dx_neg': 0.69, 'y': 0.5e-3},
-        'CO2': {'x_center': -2.09, 'dx_pos': 0.51, 'dx_neg': 0.94, 'y': 1.2e-3},
-        'H2O': {'x_center': -3.06, 'y': 0.5e-3},
-        'NH3': {'x_center': -4.51, 'y': 1.6e-3},
-        'CO': {'x_center': -3.5, 'y': 1.8e-3},
-        'HCN': {'x_center': -2.92, 'y': 4e-3},
+    'benneke': { #1 offset from Benneke et al. Table 2
+        'CH4': {'x_center': -1.64, 'dx_pos': 0.38, 'dx_neg': 0.36, 'y': 0.3e-3},
+        'CO2': {'x_center': -1.67, 'dx_pos': 0.40, 'dx_neg': 0.60, 'y': 0.7e-3},
+        'H2O': {'x_center': -1.10, 'dx_pos': 0.31, 'dx_neg': 0.92, 'y': 1.1e-3},
+        'CO': {'x_center': -1.46,'y': 2.2e-3},
+        'NH3': {'x_center': -4.27,'y': 1.8e-3},
+        'SO2': {'x_center': -4.39,'dx_pos': 1.01, 'dx_neg': 3.33,'y': 2.0e-3},
+        'CS2': {'x_center': -3.44,'dx_pos': 0.66, 'dx_neg': 0.67,'y': 2.2e-3}
+    },
+    'holmberg': { #1 offset from madhu and Holberg 2024 Table 1
+        'CH4': {'x_center': -2.72, 'dx_pos': 0.41, 'dx_neg': 0.50, 'y': 0.5e-3},
+        'CO2': {'x_center': -2.46, 'dx_pos': 0.71, 'dx_neg': 0.92, 'y': 1.5e-3},
+        'H2O': {'x_center': -1.91, 'dx_pos': 0.57, 'dx_neg': 0.94, 'y': 1e-3},
+        'NH3': {'x_center': -5.96,'y': 1.6e-3},
+        'CS2': {'x_center': -3.07, 'dx_pos': 0.74, 'dx_neg': 0.91,'y': 1.8e-3},
+        'C2H6': {'x_center': -1.72, 'y': 2.0e-3},
+        'CO': {'x_center': -2.7, 'y': 3e-3}
     },
 }
 
