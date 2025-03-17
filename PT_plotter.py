@@ -6,17 +6,19 @@ from matplotlib.lines import Line2D  # Import for creating custom legend handles
 
 # File name and legend labels
 output_dir = 'plot/PT/'
-output_name = 'Wogan_2024'
+output_name = 'Wogan_2024_with_shifts'
 input_files = [
-    'atm/atm_K218b_Hy_WoganPT_10bar.txt', 
-    'atm/atm_K218b_Hy_WoganPT.txt', 
-    'atm/atm_K218b_Hy_M23_PT_100bar(PT3).txt'
+    'atm/atm_K218b_Hy_WoganPT_10bar.txt',
+    'atm/atm_K218b_Hy_WoganPT_10bar_plus75K.txt',
+    'atm/atm_K218b_Hy_WoganPT_10bar_minus25K.txt',
+    
 ]
 
 # Legend labels
 legend_labels = [
-    'Profile 1',  # Replace with custom labels for each input file
-    'Profile 2',
+    'Original',
+    '+75K',
+    '-25'
 ]
 
 def plot_atmospheric_profiles(input_files, output_dir, output_name, legend_labels):
