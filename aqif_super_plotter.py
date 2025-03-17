@@ -8,19 +8,21 @@ import pickle
 
 # Setting input arguments
 plot_spec = 'H2O,CH4,CO2,CO,NH3,CH3CL,HCN'  # Species to plot, separated by commas
-plot_name = 'AS_new_EQ_1e13' # Output plot name
+plot_name = 'vuh_kzz_all' # Output plot name
 plot_dir = vulcan_cfg.plot_dir if hasattr(vulcan_cfg, 'plot_dir') else 'path/to/your/plot/directory'  # Ensure plot_dir is set
 error_bar_set = 'cb_1'
 vul_files = [
-             'output/Albedo_Surface/1e13/UH_K2-18b_GJ176_25bar_1e13s_100metal_PT3.vul',
-             'output/Albedo_Surface/1e13/UH_K2-18b_GJ176_50bar_1e13s_100metal_PT3.vul',
-             'output/Albedo_Surface/1e13/UH_K2-18b_GJ176_75bar_1e13s_100metal_PT3.vul',
+             'output/vuh_kzz/K2-18b_GJ176_nz250_1e17s_kzz_1e3.vul',
+             'output/vuh_kzz/K2-18b_GJ176_nz250_1e17s_kzz_1e4.vul',
+             'output/vuh_kzz/K2-18b_GJ176_nz250_1e17s_kzz_1e5.vul',
+             'output/vuh_kzz/K2-18b_GJ176_nz250_1e17s_kzz_1e6.vul',
+             
              
              
            
              ]
-titles = [ '25 bar', '50 bar', '75 bar']
-plot_title = 'Comparing EQ for different surface pressures'
+titles = [ '1e3', '1e4', '1e5', '1e6']
+plot_title = 'Uninhabited Hycean with different vertical mixing'
 
 # Line styles for each dataset (extend as needed)
 line_styles = ['-', '-.', '--', ':']  # Solid, dashed, dash-dot, dot
