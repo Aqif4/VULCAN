@@ -8,19 +8,18 @@ import pickle
 
 # Setting input arguments
 plot_spec = 'H2O,CH4,CO2,CO,NH3,CH3CL,HCN'  # Species to plot, separated by commas
-plot_name = 'AS_new_EQ_1e13' # Output plot name
+plot_name = 'vul_ini_50_bar_0.7_albedo_1e17s' # Output plot name
 plot_dir = vulcan_cfg.plot_dir if hasattr(vulcan_cfg, 'plot_dir') else 'path/to/your/plot/directory'  # Ensure plot_dir is set
 error_bar_set = 'cb_1'
 vul_files = [
-             'output/Albedo_Surface/1e13/UH_K2-18b_GJ176_25bar_1e13s_100metal_PT3.vul',
-             'output/Albedo_Surface/1e13/UH_K2-18b_GJ176_50bar_1e13s_100metal_PT3.vul',
-             'output/Albedo_Surface/1e13/UH_K2-18b_GJ176_75bar_1e13s_100metal_PT3.vul',
+             'output/Albedo_Surface/1e17/UH_K2-18b_GJ176_0.7_albedo_50bar_1e17s_100metal.vul',
+             
              
              
            
              ]
-titles = [ '25 bar', '50 bar', '75 bar']
-plot_title = 'Comparing EQ for different surface pressures'
+titles = ['']
+plot_title = '50 bar, 0.7 albedo vulcan-ini to 1e17s'
 
 # Line styles for each dataset (extend as needed)
 line_styles = ['-', '-.', '--', ':']  # Solid, dashed, dash-dot, dot
@@ -141,7 +140,7 @@ ax.set_xscale('log')
 ax.set_yscale('log')
 ax.invert_yaxis()
 ax.set_xlim(1.E-10, 1)
-ax.set_ylim(1, 1.E-11)
+ax.set_ylim(1, 1.E-8)
 ax.legend(frameon=0, prop={'size': 10}, loc='best')
 ax.set_title(plot_title)
 ax.set_xlabel("Mixing Ratio")
