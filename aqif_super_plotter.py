@@ -8,12 +8,13 @@ import pickle
 
 # Setting input arguments
 plot_spec = 'H2O,CH4,CO2,CO,NH3,CH3CL,HCN'  # Species to plot, separated by commas
+
 plot_name = 'vul_ini_50_bar_0.7_albedo_1e17s' # Output plot name
 plot_dir = vulcan_cfg.plot_dir if hasattr(vulcan_cfg, 'plot_dir') else 'path/to/your/plot/directory'  # Ensure plot_dir is set
 error_bar_set = 'cb_1'
 vul_files = [
              'output/Albedo_Surface/1e17/UH_K2-18b_GJ176_0.7_albedo_50bar_1e17s_100metal.vul',
-             
+
              
              
            
