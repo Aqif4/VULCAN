@@ -8,21 +8,18 @@ import pickle
 
 # Setting input arguments
 plot_spec = 'H2O,CH4,CO2,CO,NH3,CH3CL,HCN'  # Species to plot, separated by commas
-plot_name = 'vuh_kzz_all' # Output plot name
+plot_name = 'TOI_transition_GJ163_GJ176' # Output plot name
 plot_dir = vulcan_cfg.plot_dir if hasattr(vulcan_cfg, 'plot_dir') else 'path/to/your/plot/directory'  # Ensure plot_dir is set
 error_bar_set = 'holmberg'
-vul_files = [
-             'output/vuh_kzz/K2-18b_GJ176_nz250_1e17s_kzz_1e3.vul',
-             'output/vuh_kzz/K2-18b_GJ176_nz250_1e17s_kzz_1e4.vul',
-             'output/vuh_kzz/K2-18b_GJ176_nz250_1e17s_kzz_1e5.vul',
-             'output/vuh_kzz/K2-18b_GJ176_nz250_1e17s_kzz_1e6.vul',
+vul_files = ['output/k218_to_toi/VIH_TOI_fullchange_GJ163_nz250_1e17s.vul',
+             "output/k218_to_toi/VIH_TOI_radius_g_orbit_GJ176_nz250_1e17s.vul",
              
              
              
            
              ]
-titles = [ '1e3', '1e4', '1e5', '1e6']
-plot_title = 'Uninhabited Hycean with different vertical mixing'
+titles = [ 'GJ 176 0.3 albedo', 'GJ 163', '1e5', '1e6']
+plot_title = 'Inhabited TOI-270 d with different stellar flux'
 
 # Line styles for each dataset (extend as needed)
 line_styles = ['-', '-.', '--', ':']  # Solid, dashed, dash-dot, dot
