@@ -113,16 +113,16 @@ remove_list = [] # in pairs e.g. [1,2]
 
 # == Condensation ======
 use_relax = ['H2O']
-use_condense = True
+use_condense = False
 use_settling = True
 start_conden_time = 1
 humidity = 1.0
 stop_conden_time = 5e7 # after this time to fix the condensable species, if wrong try 5e7
 condense_sp = ['H2O']
-non_gas_sp = ['H2O_l_s']
+non_gas_sp = []
 r_p = {'H2O_l_s': 5e-3}  # particle radius in cm (1e-4 = 1 micron)
 rho_p = {'H2O_l_s': 1} # particle density in g cm^-3
-fix_species = ['H2O', 'H2O_l_s']      # fixed the condensable species after condensation-evapoation EQ has reached
+fix_species = []      # fixed the condensable species after condensation-evapoation EQ has reached
 fix_species_time = stop_conden_time
 fix_species_from_coldtrap_lev = False
 use_ini_cold_trap = False
