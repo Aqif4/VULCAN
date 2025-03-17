@@ -6,19 +6,26 @@ from matplotlib.lines import Line2D  # Import for creating custom legend handles
 
 # File name and legend labels
 output_dir = 'plot/PT/'
-output_name = 'Wogan_2024_with_shifts'
+output_name = 'TOI_PT_profiles'
 input_files = [
-    'atm/atm_K218b_Hy_WoganPT_10bar.txt',
-    'atm/atm_K218b_Hy_WoganPT_10bar_plus75K.txt',
-    'atm/atm_K218b_Hy_WoganPT_10bar_minus25K.txt',
+    'atm/toi270d_PT/A_TOI270d_Psurf_1bar_Tsurf_340K_Tstrat_260K.txt',
+    'atm/toi270d_PT/B_TOI270d_Psurf_1bar_Tsurf_340K_Tstrat_270K.txt',
+    'atm/toi270d_PT/C_TOI270d_Psurf_1bar_Tsurf_340K_Tstrat_280K.txt',
+    'atm/toi270d_PT/D_TOI270d_Psurf_1bar_Tsurf_350K_Tstrat_260K.txt',
+    'atm/toi270d_PT/E_TOI270d_Psurf_1bar_Tsurf_350K_Tstrat_270K.txt',
+    'atm/toi270d_PT/F_TOI270d_Psurf_1bar_Tsurf_350K_Tstrat_280K.txt',
+    'atm/toi270d_PT/G_TOI270d_Psurf_1bar_Tsurf_360K_Tstrat_270K.txt',
+    'atm/toi270d_PT/H_TOI270d_Psurf_1bar_Tsurf_360K_Tstrat_280K.txt',
+
+
+    
+    
     
 ]
 
 # Legend labels
-legend_labels = [
-    'Original',
-    '+75K',
-    '-25'
+legend_labels = ['A','B','C','D','E','F','G','H'
+   
 ]
 
 def plot_atmospheric_profiles(input_files, output_dir, output_name, legend_labels):
