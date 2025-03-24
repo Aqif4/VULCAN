@@ -8,22 +8,18 @@ import pickle
 
 # Setting input arguments
 plot_spec = 'H2O,CH4,CO2,CO,NH3,CH3CL,HCN'  # Species to plot, separated by commas
-
-plot_name = '75_bar_0.7_albedo_PTA1' # Output plot name
+plot_name = 'VUH_TOI_fullchange' # Output plot name
 plot_dir = vulcan_cfg.plot_dir if hasattr(vulcan_cfg, 'plot_dir') else 'path/to/your/plot/directory'  # Ensure plot_dir is set
-error_bar_set = 'cb_1'
-vul_files = [
+error_bar_set = 'holmberg'
+vul_files = ["output/k218_to_toi/VUH_TOI_fullchange_GJ163_nz250_1e17s.vul",
              
-             'output/Albedo_Surface/1e17/UH_K2-18b_GJ436_0.7_albedo_75bar_100metal_PTA1_1e17s.vul',
-            'output/Albedo_Surface/8e16/UH_K2-18b_GJ436_0.7_albedo_75bar_100metal_PTA1_8e16s.vul',
-             'output/Albedo_Surface/6e16/UH_K2-18b_GJ436_0.7_albedo_75bar_100metal_PTA1_6e16s.vul',
-
+             
              
              
            
              ]
-titles = [ '3 Gyr', '2.4 Gyr', '1.8 Gyr', '3e-3, 0.75 albedo, H20 size']
-plot_title = 'K2-18 75 bar, 0.7 UV albedo for different stellar ages'
+titles = ['']
+plot_title = 'Uninhabited TOI-270 d'
 
 # Line styles for each dataset (extend as needed)
 line_styles = ['-', '-.', '--', ':']  # Solid, dashed, dash-dot, dot
@@ -41,13 +37,23 @@ tex_labels = {
 
 # Error bar configurations
 error_bar_sets = {
-    'cb_1': {
-        'CH4': {'x_center': -1.74, 'dx_pos': 0.59, 'dx_neg': 0.69, 'y': 0.5e-3},
-        'CO2': {'x_center': -2.09, 'dx_pos': 0.51, 'dx_neg': 0.94, 'y': 1.2e-3},
-        'H2O': {'x_center': -3.06, 'y': 0.5e-3},
-        'NH3': {'x_center': -4.51, 'y': 1.6e-3},
-        'CO': {'x_center': -3.5, 'y': 1.8e-3},
-        'HCN': {'x_center': -2.92, 'y': 4e-3},
+    'benneke': { #1 offset from Benneke et al. Table 2
+        'CH4': {'x_center': -1.64, 'dx_pos': 0.38, 'dx_neg': 0.36, 'y': 0.3e-3},
+        'CO2': {'x_center': -1.67, 'dx_pos': 0.40, 'dx_neg': 0.60, 'y': 0.7e-3},
+        'H2O': {'x_center': -1.10, 'dx_pos': 0.31, 'dx_neg': 0.92, 'y': 1.1e-3},
+        'CO': {'x_center': -1.46,'y': 2.2e-3},
+        'NH3': {'x_center': -4.27,'y': 1.8e-3},
+        'SO2': {'x_center': -4.39,'dx_pos': 1.01, 'dx_neg': 3.33,'y': 2.0e-3},
+        'CS2': {'x_center': -3.44,'dx_pos': 0.66, 'dx_neg': 0.67,'y': 2.2e-3}
+    },
+    'holmberg': { #1 offset from madhu and Holberg 2024 Table 1
+        'CH4': {'x_center': -2.72, 'dx_pos': 0.41, 'dx_neg': 0.50, 'y': 0.5e-3},
+        'CO2': {'x_center': -2.46, 'dx_pos': 0.71, 'dx_neg': 0.92, 'y': 1.5e-3},
+        'H2O': {'x_center': -1.91, 'dx_pos': 0.57, 'dx_neg': 0.94, 'y': 1e-3},
+        'NH3': {'x_center': -5.96,'y': 1.6e-3},
+        'CS2': {'x_center': -3.07, 'dx_pos': 0.74, 'dx_neg': 0.91,'y': 1.8e-3},
+        'C2H6': {'x_center': -1.72, 'y': 2.0e-3},
+        'CO': {'x_center': -2.7, 'y': 3e-3}
     },
 }
 
@@ -160,7 +166,6 @@ ax.legend(frameon=0, prop={'size': 10}, loc='best')
 ax.set_title(plot_title)
 ax.set_xlabel("Mixing Ratio")
 ax.set_ylabel("Pressure (bar)")
-
 
 # Save plot
 output_path = os.path.join(plot_dir, plot_name + '.png')
