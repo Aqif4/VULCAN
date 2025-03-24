@@ -6,19 +6,19 @@ from matplotlib.lines import Line2D  # Import for creating custom legend handles
 
 # File name and legend labels
 output_dir = 'plot/PT/'
-output_name = 'Wogan_2024_with_shifts'
+output_name = 'Hycean PT profiles'
 input_files = [
+    'atm/atm_K218b_Hy_M23_PT_100bar(PT3).txt',
     'atm/atm_K218b_Hy_WoganPT_10bar.txt',
-    'atm/atm_K218b_Hy_WoganPT_10bar_plus75K.txt',
-    'atm/atm_K218b_Hy_WoganPT_10bar_minus25K.txt',
+    'atm/atm_K218b_Hy_PTA1.txt'
     
 ]
 
 # Legend labels
 legend_labels = [
-    'Original',
-    '+75K',
-    '-25'
+    'M23, PT3',
+    'W24',
+    'New PT'
 ]
 
 def plot_atmospheric_profiles(input_files, output_dir, output_name, legend_labels):
@@ -83,9 +83,20 @@ def plot_atmospheric_profiles(input_files, output_dir, output_name, legend_label
         Line2D([0], [0], color='black', lw=2)  # Solid line for Temperature
     ]
     ax2.legend(legend_handles, ['$K_{zz}$', 'Temperature'], loc='upper right', fontsize=8)
-
-    # Save plot
+    
+    #To make axes thicker
+    def thick_axes(top = False, direction = 'in'):
+        # Accessing the axes object and setting linewidth
+        plt.gca().spines['top'].set_linewidth(2)  # Top axis
+        plt.gca().spines['bottom'].set_linewidth(2)  # Bottom axis
+        plt.gca().spines['left'].set_linewidth(2)  # Left axis
+        plt.gca().spines['right'].set_linewidth(2)  # Right axis
+        plt.tick_params(which = 'major', axis = 'both', direction = direction, labelsize = 12, length = 4, width = 2, right = True, top = top)
+        plt.tick_params(which = 'minor',axis = 'both', direction = direction, labelsize = 12, length = 2, width = 1, right = True, top = top)
+    thick_axes(top=True)
     output_path = os.path.join(output_dir, output_name + ".png")
+    
+    # Save plot
     plt.savefig(output_path)
     plt.show()
 
