@@ -6,7 +6,7 @@ from matplotlib.lines import Line2D  # Import for creating custom legend handles
 
 # File name and legend labels
 output_dir = 'plot/PT/'
-output_name = 'TOI_PT_profiles'
+output_name = 'TOI_PT_profiles_A-I'
 input_files = [
     'atm/toi270d_PT/A_TOI270d_Psurf_1bar_Tsurf_340K_Tstrat_260K.txt',
     'atm/toi270d_PT/B_TOI270d_Psurf_1bar_Tsurf_340K_Tstrat_270K.txt',
@@ -16,6 +16,21 @@ input_files = [
     'atm/toi270d_PT/F_TOI270d_Psurf_1bar_Tsurf_350K_Tstrat_280K.txt',
     'atm/toi270d_PT/G_TOI270d_Psurf_1bar_Tsurf_360K_Tstrat_270K.txt',
     'atm/toi270d_PT/H_TOI270d_Psurf_1bar_Tsurf_360K_Tstrat_280K.txt',
+    'atm/toi270d_PT/I_TOI270d_Psurf_1bar_Tsurf_360K_Tstrat_290K.txt',
+    'atm/toi270d_PT/AC1_TOI270d_Psurf_1bar_Tsurf_340K_Tstrat_200K_2e-2_turn.txt',
+    
+    
+    
+    #'atm/toi270d_PT/J_TOI270d_Psurf_1bar_Tsurf_320K_Tstrat_200K.txt',
+    #'atm/toi270d_PT/K_TOI270d_Psurf_1bar_Tsurf_320K_Tstrat_210K.txt',
+    #'atm/toi270d_PT/L_TOI270d_Psurf_1bar_Tsurf_320K_Tstrat_220K.txt',
+    #'atm/toi270d_PT/M_TOI270d_Psurf_1bar_Tsurf_340K_Tstrat_200K.txt',
+    #'atm/toi270d_PT/N_TOI270d_Psurf_1bar_Tsurf_340K_Tstrat_210K.txt',
+    #'atm/toi270d_PT/O_TOI270d_Psurf_1bar_Tsurf_340K_Tstrat_220K.txt',
+    #'atm/toi270d_PT/AC1_TOI270d_Psurf_1bar_Tsurf_340K_Tstrat_200K_2e-2_turn.txt'
+    
+
+
 
 
     
@@ -23,8 +38,11 @@ input_files = [
     
 ]
 
+
+
+
 # Legend labels
-legend_labels = ['A','B','C','D','E','F','G','H'
+legend_labels = ['A','B','C','D','E','F','G','H','I','AC1'
    
 ]
 
@@ -36,8 +54,9 @@ def plot_atmospheric_profiles(input_files, output_dir, output_name, legend_label
     fig, ax1 = plt.subplots(figsize=(6, 5), constrained_layout=True)
     ax2 = ax1.twiny()  # Create secondary x-axis for k_zz
 
-    # Colors for different profiles
-    colors = ['r', 'g', 'b', 'c', 'm', 'y', 'k']  # List of colors
+    # Use a colormap for more varied colors (viridis, plasma, etc.)
+    cmap = plt.cm.plasma  # You can try other maps like 'plasma', 'cividis', etc.
+    colors = [cmap(i / len(input_files)) for i in range(len(input_files))]
     
     # Lists for legends
     profile_legends = []  # For Temperature (PT)

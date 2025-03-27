@@ -1,0 +1,5 @@
+#(dyn/cm2)      (K)     (cm2/s)
+Pressure        Temp    Kzz
+1.000e+06   340.0  1.000e+05
+2e5         260	    1e5
+1e-2	260	1e5	

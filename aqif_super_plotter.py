@@ -8,18 +8,20 @@ import pickle
 
 # Setting input arguments
 plot_spec = 'H2O,CH4,CO2,CO,NH3,CH3CL,HCN'  # Species to plot, separated by commas
-plot_name = 'VUH_TOI_fullchange' # Output plot name
+plot_name = 'VIH_TOI_AC1_GJ436_vs_GJ163_1e17s' # Output plot name
 plot_dir = vulcan_cfg.plot_dir if hasattr(vulcan_cfg, 'plot_dir') else 'path/to/your/plot/directory'  # Ensure plot_dir is set
 error_bar_set = 'holmberg'
-vul_files = ["output/k218_to_toi/VUH_TOI_fullchange_GJ163_nz250_1e17s.vul",
+vul_files = ["output/TOI_toi270d_PT/1e17/AC1_Life1_1bar_GJ436_0.3_albedo_100_metal_nz250_1e17s_PC.vul",
+             "output/TOI_toi270d_PT/1e17/AC1_Life1_1bar_GJ163_0.3_albedo_100_metal_nz250_1e17s.vul",
+             
              
              
              
              
            
              ]
-titles = ['']
-plot_title = 'Uninhabited TOI-270 d'
+titles = ['GJ-436','GJ-163', '6e16']
+plot_title = 'Inhabited TOI-270 d, AC1 PT with different stars'
 
 # Line styles for each dataset (extend as needed)
 line_styles = ['-', '-.', '--', ':']  # Solid, dashed, dash-dot, dot

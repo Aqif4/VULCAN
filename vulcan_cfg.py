@@ -12,16 +12,16 @@ use_lowT_limit_rates = True
 gibbs_text = 'thermo/gibbs_text.txt' # (all the nasa9 files must be placed in the folder: thermo/NASA9/)
 cross_folder = 'thermo/photo_cross/'
 com_file = 'thermo/all_compose.txt'
-atm_file = 'atm/atm_K218b_Hy_WoganPT_10bar_plus70K_forTOI.txt' # TP and Kzz (optional) file
-sflux_file = 'atm/stellar_flux/sflux-GJ163.txt' # sflux-HD189_B2020.txt This is the flux density at the stellar surface
+atm_file = 'atm/toi270d_PT/AC1_TOI270d_Psurf_1bar_Tsurf_340K_Tstrat_200K_2e-2_turn.txt' # TP and Kzz (optional) file
+sflux_file = 'atm/stellar_flux/sflux-GJ163_0.3_albedo.txt' # sflux-HD189_B2020.txt This is the flux density at the stellar surface
 top_BC_flux_file = 'atm/BC_top.txt' # the file for the top boundary conditions
-bot_BC_flux_file = 'atm/BC_bot_K218b_Wogan_life1_C.txt' # the file for the lower boundary conditions
-vul_ini =  'output/TOI_winter/plus70_Life1C_5e5kzz_nz250_4e14s.vul' # the file to initialize the abundances for ini_mix = 'vulcan_ini'
+bot_BC_flux_file = 'atm/BC_bot_K218b_Wogan_life1.txt' # the file for the lower boundary conditions
+vul_ini =  'output/TOI_toi270d_PT/8e16/AC1_Life1_1bar_GJ163_0.3_albedo_100_metal_nz250_8e16s_PC.vul' # the file to initialize the abundances for ini_mix = 'vulcan_ini'
 # output:
-output_dir = 'output/TOI_winter/'
+output_dir = 'output/TOI_toi270d_PT/1e17/'
 plot_dir = 'plot/'
 movie_dir = 'plot/movie/'
-out_name =  'plus70_Life1C_5e5kzz_nz250_1e17s.vul' # output file name
+out_name =  'AC1_Life1_1bar_GJ163_0.3_albedo_100_metal_nz250_1e17s.vul' # output file name
 
 # ====== For Long runs ======
 use_finalsmooth = 0
@@ -99,7 +99,7 @@ update_frq = 50
 # Boundary Conditions:
 use_topflux = False
 use_botflux = True
-use_fix_sp_bot = {'H2O':0.1, 'CO2':0.008} # fixed mixing ratios at the lower boundary
+use_fix_sp_bot = {'H2O':0.25, 'CO2':0.003} # fixed mixing ratios at the lower boundary
 diff_esc = ['H'] # species for diffusion-limit escape at TOA
 max_flux = 1e13  # upper limit for the diffusion-limit fluxes
 use_sat_surfaceH2O = True
@@ -116,7 +116,7 @@ use_condense = True
 use_settling = True
 start_conden_time = 0
 humidity = 1.0
-stop_conden_time = 1e9 # after this time to fix the condensable species, if wrong try 5e7. This has now been increased to 1e8 after Winter
+stop_conden_time = 1 # after this time to fix the condensable species, if wrong try 5e7. This has now been increased to 1e8 after Winter
 condense_sp = ['H2O']
 non_gas_sp = ['H2O_l_s']
 r_p = {'H2O_l_s': 5e-3}  # particle radius in cm (1e-4 = 1 micron)
@@ -124,7 +124,7 @@ rho_p = {'H2O_l_s': 1} # particle density in g cm^-3
 fix_species = ['H2O', 'H2O_l_s']      # fixed the condensable species after condensation-evapoation EQ has reached
 # fix_species_time = stop_conden_time
 fix_species_from_coldtrap_lev = False
-use_ini_cold_trap = True
+use_ini_cold_trap = False
 
 # ====== steady state check ======
 st_factor = 0.5
@@ -137,14 +137,14 @@ use_print_delta = False
 print_prog_num = 500  # print the progress every x steps
 dttry = 1.E-10
 trun_min = 1e2
-runtime = 1e17
+runtime = 2e16
 dt_min = 1.E-10
 #dt_max = 5e13
 dt_max = 1e14
 dt_var_max = 2.
 dt_var_min = 0.5
 count_min = 120
-count_max = 20000
+count_max = 10000
 atol = 1.E0 # Try decreasing this if the solutions are not stable
 mtol = 1e-17 #1.E-20
 mtol_conv = 1e-13 #1.E-18
@@ -165,7 +165,7 @@ post_conden_rtol = 2.5 # switched to this value after fix_species_time
 
 # ====== Setting up for ouwtput and plotting ======
 # plotting:
-plot_TP = True
+plot_TP = False
 use_live_plot = True
 use_live_flux = False
 use_plot_end = False
@@ -192,7 +192,7 @@ use_finalsmooth = 0
 #====== Added ======#
 
 #Plot limits
-y_limits = (P_b/1.E6,P_t/1.E6)
+y_limits = (100,P_t/1.E6)
 x_limits= (1e-10, 1)
 
 
