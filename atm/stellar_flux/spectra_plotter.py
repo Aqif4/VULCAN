@@ -2,14 +2,17 @@ import matplotlib.pyplot as plt
 import os
 
 # Specify the input and output directories
-input_dir = "atm/stellar_flux/"  # Change this to your actual input directory
+input_dir = ""  # Change this to your actual input directory
 output_dir = "plot/stellar_flux/"  # Change this to your actual output directory
-output_filename = "GJ-176"  # Name of the saved plot
+output_filename = "GJ-436"  # Name of the saved plot
 
 # List of input files and corresponding legend labels
 files = [
-    ("sflux-GJ176_K2-18b_0.3_albedo.txt", "0.3 Albedo"),
-    ("sflux-GJ176_from_Muscles.txt", "0 albedo"),
+    ("sflux-GJ436_0.9_albedo.txt", "0.9"),
+    ("sflux-GJ436_K2-18b_0.85_albedo.txt", "0.85"),
+    ("sflux-GJ436_0.7_albedo.txt", "0.7"),
+    ("sflux-GJ436_0.5_albedo.txt", "0.5"),
+    ("sflux-GJ436_0.3_albedo.txt", "0.3"),
     # Add more files as needed
 ]
 
