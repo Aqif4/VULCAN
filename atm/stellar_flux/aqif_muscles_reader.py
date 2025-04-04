@@ -8,18 +8,18 @@ In SIMBAD, mas = 0.001 arcsec:
 '''
 
 #Input file
-file='fits_files/hlsp_muscles_multi_multi_gj436_broadband_v22_const-res-sed.fits'
+file='fits_files/hlsp_muscles_multi_multi_gj163_broadband_v23_const-res-sed.fits'
 output='sflux-GJ436_from_muscles.txt'
 
 # Epsilon Eridani is 10.475 light years away and with 0.735 solar radius
 # GJ876 is 15.2 light years away and has 0.3761 solar radius
 # GJ551 (proxima cen) is 4.246 light years away and has 0.1542 solar radius
-# GJ436 is 31.8 light years away and has 0.42 solar radius
+# GJ436 is 31.8 light years away and has 0.417 solar radius
 # GJ1214 is 47.5 light years away and has 0.2064 solar radius
 # GJ176 is 30.9 light years away and has 0.474 solar radius
 
-stellar_radius= 0.42    #solar radii
-stellar_distance= 31.9     #lyr
+stellar_radius= 0.410    #solar radii
+stellar_distance= 49.3     #lyr
 
 #Constants
 lyr = 9.461e17  # cm
