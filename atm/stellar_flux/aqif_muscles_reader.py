@@ -8,28 +8,22 @@ In SIMBAD, mas = 0.001 arcsec:
 '''
 
 #Input file
-file='fits_files/hlsp_muscles_multi_multi_gj163_broadband_v23_const-res-sed.fits'
-output='sflux-GJ436_from_muscles.txt'
+file='fits_files/hlsp_muscles_multi_multi_gj832_broadband_v22_const-res-sed.fits'
+output='sflux-GJ832_from_muscles.txt'
 
-# Epsilon Eridani is 10.475 light years away and with 0.735 solar radius
-# GJ876 is 15.2 light years away and has 0.3761 solar radius
-# GJ551 (proxima cen) is 4.246 light years away and has 0.1542 solar radius
-# GJ436 is 31.8 light years away and has 0.417 solar radius
-# GJ1214 is 47.5 light years away and has 0.2064 solar radius
-# GJ176 is 30.9 light years away and has 0.474 solar radius
 
-stellar_radius= 0.410    #solar radii
-stellar_distance= 49.3     #lyr
+stellar_radius= 0.442   #solar radii
+stellar_distance_pc= 4.964     #pc
 
 #Constants
 lyr = 9.461e17  # cm
 r_sun = 6.957E10 # cm
+stellar_distance=stellar_distance_pc * 3.26 #pc to lyr
 
-
-import numpy as np # type: ignore
-import scipy # type: ignore
-from astropy.io import fits # type: ignore
-from astropy.table import Table # type: ignore
+import numpy as np 
+import scipy 
+from astropy.io import fits 
+from astropy.table import Table 
 
 hdulist = fits.open(file)
 print (hdulist.info())

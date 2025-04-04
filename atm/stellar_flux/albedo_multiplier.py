@@ -1,7 +1,7 @@
 
-input_file = "sflux-GJ436_from_muscles.txt"  # Path to your input file
-output_file = "sflux-GJ436_0.75_albedo.txt"  # Path to save the output file
-A = 0.75 # Albedo (1 - A), modify this value as needed
+input_file = "sflux-GJ832_from_muscles.txt"  # Path to your input file
+output_file = "sflux-GJ832_0.3_albedo.txt"  # Path to save the output file
+A = 0.3 # Albedo (1 - A), modify this value as needed
 
 def adjust_flux(input_file, output_file, A):
     # Initialize lists for wavelength (WL) and flux
