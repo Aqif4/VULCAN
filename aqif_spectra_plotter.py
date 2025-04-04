@@ -8,8 +8,8 @@ output_filename = "Proxies_100-200nm.png"  # Name of the saved plot
 plot_title = ''
 
 # Define the wavelength range (in nm)
-min_wavelength = 75  # Set lower limit
-max_wavelength = 150  # Set upper limit
+min_wavelength = 100  # Set lower limit
+max_wavelength = 200  # Set upper limit
 
 # List of input files, legend labels, and corresponding line styles
 files = [
