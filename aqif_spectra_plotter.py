@@ -4,18 +4,19 @@ import os
 # Specify the input and output directories
 input_dir = "atm/stellar_flux/"  # Change this to your actual input directory
 output_dir = "plot/stellar_flux/"  # Change this to your actual output directory
-output_filename = "GJ-436_100-200nm.png"  # Name of the saved plot
-plot_title = 'GJ-436 from different sources between 100-200nm'
+output_filename = "Proxies_100-200nm.png"  # Name of the saved plot
+plot_title = ''
 
 # Define the wavelength range (in nm)
-min_wavelength = 100  # Set lower limit
-max_wavelength = 200  # Set upper limit
+min_wavelength = 75  # Set lower limit
+max_wavelength = 150  # Set upper limit
 
 # List of input files, legend labels, and corresponding line styles
 files = [
-    ("sflux-GJ436_from_muscles.txt", "from MUSCLES", "-"),   # Solid line
-    ("GJ436_from_PSG.txt", "from PSG", "--"), 
-    ("sflux-GJ436.txt", "from Greg", "-."),    # Dashed line
+    ("sflux-GJ176_from_muscles.txt", "GJ-176", '-'),
+    ("sflux-GJ436_from_muscles.txt", "GJ-436", '-'),
+    ("sflux-GJ163_from_muscles.txt", "GJ-163", '-'),
+    ("sflux-GJ832_from_muscles.txt", "GJ-832", '-'),   # Dashed line
     # Add more files as needed, e.g., ("filename.txt", "label", "linestyle")
 ]
 
@@ -79,7 +80,6 @@ plt.yscale('log')
 plt.ylabel("Flux (ergs/cm²/s/nm)")
 plt.title(plot_title)
 plt.legend(loc="best")
-plt.grid(True)
 
 # Ensure the output directory exists
 os.makedirs(output_dir, exist_ok=True)

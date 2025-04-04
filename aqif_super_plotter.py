@@ -9,21 +9,21 @@ import pickle
 # Setting input arguments
 plot_spec = 'H2O,CH4,CO2,CO,NH3,CH3CL,HCN'  # Species to plot, separated by commas
 
-plot_name = '75_bar_0.7_albedo_PTA1' # Output plot name
+plot_name = 'GJ176_5e10_differentmethanestart_K2-18b' # Output plot name
 plot_dir = vulcan_cfg.plot_dir if hasattr(vulcan_cfg, 'plot_dir') else 'path/to/your/plot/directory'  # Ensure plot_dir is set
 error_bar_set = 'cb_1'
 vul_files = [
              
-             'output/Albedo_Surface/1e17/UH_K2-18b_GJ436_0.7_albedo_75bar_100metal_PTA1_1e17s.vul',
-            'output/Albedo_Surface/8e16/UH_K2-18b_GJ436_0.7_albedo_75bar_100metal_PTA1_8e16s.vul',
-             'output/Albedo_Surface/6e16/UH_K2-18b_GJ436_0.7_albedo_75bar_100metal_PTA1_6e16s.vul',
+             "output/Wogan_100metal/1e15/VIH_K2-18b_Woganlife1_100metalEQ_GJ436_0.3alb_5e10_CH4_1e15s.vul",
+             "output/Wogan_const_mix/1e15/VIH_K2-18b_Woganlife1_const_GJ176_0.3alb_5e10_CH4_1e15s.vul",
+            
 
              
              
            
              ]
-titles = [ '3 Gyr', '2.4 Gyr', '1.8 Gyr', '3e-3, 0.75 albedo, H20 size']
-plot_title = 'K2-18 75 bar, 0.7 UV albedo for different stellar ages'
+titles = [ "5%", "1e-10"]
+plot_title = ''
 
 # Line styles for each dataset (extend as needed)
 line_styles = ['-', '-.', '--', ':']  # Solid, dashed, dash-dot, dot
