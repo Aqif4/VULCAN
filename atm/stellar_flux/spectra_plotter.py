@@ -4,12 +4,14 @@ import os
 # Specify the input and output directories
 input_dir = ""  # Change this to your actual input directory
 output_dir = "plot/stellar_flux/"  # Change this to your actual output directory
-output_filename = "GJ-163_adapt"  # Name of the saved plot
+output_filename = "Stellar_proxies"  # Name of the saved plot
 
 # List of input files and corresponding legend labels
 files = [
-    ("sflux-GJ163_from_muscles.txt", "No Adapt"),
-    ("sflux-GJ163_from_muscles_adapt.txt", "Adapt"),
+    ("sflux-GJ176_from_muscles.txt", "GJ-176"),
+    ("sflux-GJ436_from_muscles.txt", "GJ-436"),
+    ("sflux-GJ163_from_muscles.txt", "GJ-163"),
+    ("sflux-GJ832_from_muscles.txt", "GJ-832"),
     # Add more files as needed
 ]
 
@@ -44,14 +46,24 @@ for i, (filename, legend_label) in enumerate(files):
         print(f"File {filepath} not found. Skipping.")
         continue
 
+#To make axes thicker
+def thick_axes(top = False, direction = 'in'):
+    # Accessing the axes object and setting linewidth
+    plt.gca().spines['top'].set_linewidth(2)  # Top axis
+    plt.gca().spines['bottom'].set_linewidth(2)  # Bottom axis
+    plt.gca().spines['left'].set_linewidth(2)  # Left axis
+    plt.gca().spines['right'].set_linewidth(2)  # Right axis
+    plt.tick_params(which = 'major', axis = 'both', direction = direction, labelsize = 12, length = 4, width = 2, right = True, top = top)
+    plt.tick_params(which = 'minor',axis = 'both', direction = direction, labelsize = 12, length = 2, width = 1, right = True, top = top)
+thick_axes(top=True)
+
+
 # Add labels, title, legend, and grid
 plt.xlabel("Wavelength (nm)")
 plt.xscale('log')
 plt.yscale('log')
 plt.ylabel("Flux (ergs/cm²/s/nm)")
-plt.title("Multiple Spectra")
 plt.legend(loc="best")
-plt.grid(True)
 
 # Ensure the output directory exists
 os.makedirs(output_dir, exist_ok=True)
