@@ -12,16 +12,16 @@ use_lowT_limit_rates = True
 gibbs_text = 'thermo/gibbs_text.txt' # (all the nasa9 files must be placed in the folder: thermo/NASA9/)
 cross_folder = 'thermo/photo_cross/'
 com_file = 'thermo/all_compose.txt'
-atm_file = 'atm/toi270d_PT/AC1_TOI270d_Psurf_1bar_Tsurf_340K_Tstrat_200K_2e-2_turn.txt' # TP and Kzz (optional) file
+atm_file = 'atm/toi270d_PT/L_TOI270d_Psurf_1bar_Tsurf_320K_Tstrat_220K.txt' # TP and Kzz (optional) file
 sflux_file = 'atm/stellar_flux/sflux-GJ163_0.3_albedo.txt' # sflux-HD189_B2020.txt This is the flux density at the stellar surface
 top_BC_flux_file = 'atm/BC_top.txt' # the file for the top boundary conditions
-bot_BC_flux_file = 'atm/BC_bot_K218b_Wogan_life1.txt' # the file for the lower boundary conditions
-vul_ini =  'output/TOI_toi270d_PT/8e16/AC1_Life1_1bar_GJ163_0.3_albedo_100_metal_nz250_8e16s_PC.vul' # the file to initialize the abundances for ini_mix = 'vulcan_ini'
+bot_BC_flux_file = 'atm/BC_bot_K218b_Wogan_life1_4e9_CH4.txt' # the file for the lower boundary conditions
+vul_ini =  'output/TOI_toi270d_PT/1e17/L_Life1_1bar_GJ163_0.3_albedo_100_metal_nz250_3e15s_PC.vul' # the file to initialize the abundances for ini_mix = 'vulcan_ini'
 # output:
 output_dir = 'output/TOI_toi270d_PT/1e17/'
 plot_dir = 'plot/'
 movie_dir = 'plot/movie/'
-out_name =  'AC1_Life1_1bar_GJ163_0.3_albedo_100_metal_nz250_1e17s.vul' # output file name
+out_name =  'L_Life1_1bar_GJ163_0.3_albedo_100_metal_nz250_1e17s_PC.vul' # output file name
 
 # ====== For Long runs ======
 use_finalsmooth = 0
@@ -45,8 +45,8 @@ const_mix = {'CH4':1e-10, 'CO':1e-10, 'CO2': 0.008, 'O2':O_H*0.01, 'He':0.09691,
 # ====== Setting up photochemistry ======
 use_photo = True
 # astronomy input
-r_star = 0.405 # stellar radius in solar radius
-Rp = 1.3588E9 # Planetary radius (cm) (for computing gravity)
+r_star = 0.410 # stellar radius in solar radius
+Rp = 1.36E9 # Planetary radius (cm) (for computing gravity)
 orbit_radius = 0.07210 # planet-star distance in A.U.
 sl_angle = 60 /180.*3.14159 # the zenith angle of the star in degree (usually 58 deg for the dayside average)
 f_diurnal = 0.5 # to account for the diurnal average of solar flux (i.e. 0.5 for Earth; 1 for tidally-locked planets)
@@ -83,7 +83,7 @@ Kzz_prof = 'const' # Options: 'const','file' or 'Pfunc' (Kzz increased with P^-0
 K_max = 5e5        # for Kzz_prof = 'Pfunc'
 K_p_lev = 0.1      # for Kzz_prof = 'Pfunc'
 vz_prof = 'const'  # Options: 'const' or 'file'
-gs = 1031.66         # surface gravity (cm/s^2)  (HD189:2140  HD209:936)
+gs = 1031        # surface gravity (cm/s^2)  (HD189:2140  HD209:936)
 Tiso = 305.0 # only read when atm_type = 'isothermal'
 # setting the parameters for the analytical T-P from (126)in Heng et al. 2014. Only reads when atm_type = 'analytical'
 # T_int, T_irr, ka_L, ka_S, beta_S, beta_L
@@ -99,7 +99,7 @@ update_frq = 50
 # Boundary Conditions:
 use_topflux = False
 use_botflux = True
-use_fix_sp_bot = {'H2O':0.25, 'CO2':0.003} # fixed mixing ratios at the lower boundary
+use_fix_sp_bot = {'H2O':0.1, 'CO2':0.003} # fixed mixing ratios at the lower boundary
 diff_esc = ['H'] # species for diffusion-limit escape at TOA
 max_flux = 1e13  # upper limit for the diffusion-limit fluxes
 use_sat_surfaceH2O = True
@@ -116,7 +116,7 @@ use_condense = True
 use_settling = True
 start_conden_time = 0
 humidity = 1.0
-stop_conden_time = 1 # after this time to fix the condensable species, if wrong try 5e7. This has now been increased to 1e8 after Winter
+stop_conden_time = 1e-10 # after this time to fix the condensable species, if wrong try 5e7. This has now been increased to 1e8 after Winter
 condense_sp = ['H2O']
 non_gas_sp = ['H2O_l_s']
 r_p = {'H2O_l_s': 5e-3}  # particle radius in cm (1e-4 = 1 micron)
@@ -137,7 +137,7 @@ use_print_delta = False
 print_prog_num = 500  # print the progress every x steps
 dttry = 1.E-10
 trun_min = 1e2
-runtime = 2e16
+runtime = 1e17
 dt_min = 1.E-10
 #dt_max = 5e13
 dt_max = 1e14
@@ -146,8 +146,8 @@ dt_var_min = 0.5
 count_min = 120
 count_max = 10000
 atol = 1.E0 # Try decreasing this if the solutions are not stable
-mtol = 1e-17 #1.E-20
-mtol_conv = 1e-13 #1.E-18
+mtol = 6e-17 #1.E-20
+mtol_conv = 6e-13 #1.E-18
 pos_cut = 0
 nega_cut = -1.
 loss_eps = 1

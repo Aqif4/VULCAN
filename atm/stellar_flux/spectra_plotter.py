@@ -4,14 +4,21 @@ import os
 # Specify the input and output directories
 input_dir = ""  # Change this to your actual input directory
 output_dir = "plot/stellar_flux/"  # Change this to your actual output directory
-output_filename = "Stellar_proxies"  # Name of the saved plot
+output_filename = "GJ436_adapt"  # Name of the saved plot
 
 # List of input files and corresponding legend labels
 files = [
-    ("sflux-GJ176_from_muscles.txt", "GJ-176"),
-    ("sflux-GJ436_from_muscles.txt", "GJ-436"),
-    ("sflux-GJ163_from_muscles.txt", "GJ-163"),
-    ("sflux-GJ832_from_muscles.txt", "GJ-832"),
+    #('sflux-GJ163_adapt.txt', 'adapt'),
+    #('sflux-GJ163_from_muscles.txt', 'muscles'),
+    #('sflux-GJ163_const.txt', 'const')
+    #("sflux-GJ176_adapt.txt", "GJ-176"),
+    ("sflux-GJ436_adapt.txt", "GJ-436, adapt"),
+    #("sflux-GJ176_from_muscles.txt", "GJ-176"),
+    #("sflux-GJ436_from_muscles.txt", "GJ-436, const"),
+    #("sflux-GJ163_from_muscles.txt", "GJ-163"),
+    #("sflux-GJ163_adapt.txt", "GJ-163"),
+    #("sflux-GJ832_from_muscles.txt", "GJ-832"),
+    #("sflux-GJ832_adapt.txt", "GJ-832"),
     # Add more files as needed
 ]
 

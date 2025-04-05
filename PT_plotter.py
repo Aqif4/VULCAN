@@ -6,18 +6,14 @@ from matplotlib.lines import Line2D  # Import for creating custom legend handles
 
 # File name and legend labels
 output_dir = 'plot/PT/'
-output_name = 'TOI_PT_profiles_A-I'
+output_name = 'TOI_PT_profiles_P-S'
 input_files = [
-    'atm/toi270d_PT/A_TOI270d_Psurf_1bar_Tsurf_340K_Tstrat_260K.txt',
-    'atm/toi270d_PT/B_TOI270d_Psurf_1bar_Tsurf_340K_Tstrat_270K.txt',
-    'atm/toi270d_PT/C_TOI270d_Psurf_1bar_Tsurf_340K_Tstrat_280K.txt',
-    'atm/toi270d_PT/D_TOI270d_Psurf_1bar_Tsurf_350K_Tstrat_260K.txt',
-    'atm/toi270d_PT/E_TOI270d_Psurf_1bar_Tsurf_350K_Tstrat_270K.txt',
-    'atm/toi270d_PT/F_TOI270d_Psurf_1bar_Tsurf_350K_Tstrat_280K.txt',
-    'atm/toi270d_PT/G_TOI270d_Psurf_1bar_Tsurf_360K_Tstrat_270K.txt',
-    'atm/toi270d_PT/H_TOI270d_Psurf_1bar_Tsurf_360K_Tstrat_280K.txt',
-    'atm/toi270d_PT/I_TOI270d_Psurf_1bar_Tsurf_360K_Tstrat_290K.txt',
-    'atm/toi270d_PT/AC1_TOI270d_Psurf_1bar_Tsurf_340K_Tstrat_200K_2e-2_turn.txt',
+    
+    'atm/toi270d_PT/P_TOI270d_Psurf_1bar_Tsurf_320K_Tstrat_250K.txt',
+    'atm/toi270d_PT/Q_TOI270d_Psurf_1bar_Tsurf_320K_Tstrat_255K.txt',
+    'atm/toi270d_PT/R_TOI270d_Psurf_1bar_Tsurf_320K_Tstrat_260K.txt',
+    'atm/toi270d_PT/S_TOI270d_Psurf_1bar_Tsurf_320K_Tstrat_265K.txt',
+    'atm/toi270d_PT/P-5_TOI270d_Psurf_1bar_Tsurf_320K_Tstrat_250K.txt'
     
     
     
@@ -42,7 +38,7 @@ input_files = [
 
 
 # Legend labels
-legend_labels = ['A','B','C','D','E','F','G','H','I','AC1'
+legend_labels = ['P','Q','R','S','new','F','G','H','I','AC1'
    
 ]
 
