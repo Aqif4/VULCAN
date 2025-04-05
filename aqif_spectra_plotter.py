@@ -1,29 +1,22 @@
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt 
 import os
 
 # Specify the input and output directories
-<<<<<<< HEAD
-input_dir = ""  # Change this to your actual input directory
-output_dir = "plot/stellar_flux/"  # Change this to your actual output directory
-output_filename = "Stellar_proxies"  # Name of the saved plot
-
-# List of input files and corresponding legend labels
-files = [
-    ("sflux-GJ176_from_muscles.txt", "GJ-176"),
-    ("sflux-GJ436_from_muscles.txt", "GJ-436"),
-    ("sflux-GJ163_from_muscles.txt", "GJ-163"),
-    ("sflux-GJ832_from_muscles.txt", "GJ-832"),
-=======
 input_dir = "atm/stellar_flux/"  # Change this to your actual input directory
 output_dir = "plot/stellar_flux/"  # Change this to your actual output directory
-output_filename = "GJ-176"  # Name of the saved plot
+output_filename = "GJ-436_100-200nm.png"  # Name of the saved plot
+plot_title = 'GJ-436 from different sources between 100-200nm'
 
-# List of input files and corresponding legend labels
+# Define the wavelength range (in nm)
+min_wavelength = 100  # Set lower limit
+max_wavelength = 200  # Set upper limit
+
+# List of input files, legend labels, and corresponding line styles
 files = [
-    ("sflux-GJ176_K2-18b_0.3_albedo.txt", "0.3 Albedo"),
-    ("sflux-GJ176_from_Muscles.txt", "0 albedo"),
->>>>>>> defa297b8908fb28a979a07a58f1dfa4851e8ed4
-    # Add more files as needed
+    ("sflux-GJ436_from_muscles.txt", "from MUSCLES", "-"),   # Solid line
+    ("GJ436_from_PSG.txt", "from PSG", "--"), 
+    ("sflux-GJ436.txt", "from Greg", "-."),    # Dashed line
+    # Add more files as needed, e.g., ("filename.txt", "label", "linestyle")
 ]
 
 # Colors for each spectrum line
@@ -33,7 +26,7 @@ colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k']
 plt.figure(figsize=(8, 6))
 
 # Loop through each file and plot it
-for i, (filename, legend_label) in enumerate(files):
+for i, (filename, legend_label, line_style) in enumerate(files):
     filepath = os.path.join(input_dir, filename)
 
     # Initialize lists for wavelength (WL) and flux data for each file
@@ -46,18 +39,27 @@ for i, (filename, legend_label) in enumerate(files):
             next(file)  # Skip the first line
             for line in file:
                 parts = line.split()
-                wavelength.append(float(parts[0]))
-                flux.append(float(parts[1]))
+                wl = float(parts[0])
+                f = float(parts[1])
+                
+                # Collect data within the specified range
+                if min_wavelength <= wl <= max_wavelength:
+                    wavelength.append(wl)
+                    flux.append(f)
         
+        # Check if data was collected in the range
+        if not wavelength:
+            print(f"No data in the specified range for {filename}. Skipping.")
+            continue
+
         # Plot the current spectrum
         color = colors[i % len(colors)]  # Cycle through colors if more files than colors
-        plt.plot(wavelength, flux, color=color, linestyle='-', label=legend_label)
+        plt.plot(wavelength, flux, color=color, linestyle=line_style, label=legend_label)
 
     except FileNotFoundError:
         print(f"File {filepath} not found. Skipping.")
         continue
 
-<<<<<<< HEAD
 #To make axes thicker
 def thick_axes(top = False, direction = 'in'):
     # Accessing the axes object and setting linewidth
@@ -70,14 +72,14 @@ def thick_axes(top = False, direction = 'in'):
 thick_axes(top=True)
 
 
-=======
->>>>>>> defa297b8908fb28a979a07a58f1dfa4851e8ed4
 # Add labels, title, legend, and grid
 plt.xlabel("Wavelength (nm)")
 plt.xscale('log')
 plt.yscale('log')
 plt.ylabel("Flux (ergs/cm²/s/nm)")
+plt.title(plot_title)
 plt.legend(loc="best")
+plt.grid(True)
 
 # Ensure the output directory exists
 os.makedirs(output_dir, exist_ok=True)

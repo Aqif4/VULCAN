@@ -8,6 +8,7 @@ import pickle
 
 # Setting input arguments
 plot_spec = 'H2O,CH4,CO2,CO,NH3,CH3CL,HCN'  # Species to plot, separated by commas
+<<<<<<< HEAD
 plot_name = 'VIH_TOI_AC1_GJ436_vs_GJ163_1e17s' # Output plot name
 plot_dir = vulcan_cfg.plot_dir if hasattr(vulcan_cfg, 'plot_dir') else 'path/to/your/plot/directory'  # Ensure plot_dir is set
 error_bar_set = 'holmberg'
@@ -16,12 +17,29 @@ vul_files = ["output/TOI_toi270d_PT/1e17/AC1_Life1_1bar_GJ436_0.3_albedo_100_met
              
              
              
+=======
+
+plot_name = '75_bar_0.7_albedo_PTA1' # Output plot name
+plot_dir = vulcan_cfg.plot_dir if hasattr(vulcan_cfg, 'plot_dir') else 'path/to/your/plot/directory'  # Ensure plot_dir is set
+error_bar_set = 'cb_1'
+vul_files = [
+             
+             'output/Albedo_Surface/1e17/UH_K2-18b_GJ436_0.7_albedo_75bar_100metal_PTA1_1e17s.vul',
+            'output/Albedo_Surface/8e16/UH_K2-18b_GJ436_0.7_albedo_75bar_100metal_PTA1_8e16s.vul',
+             'output/Albedo_Surface/6e16/UH_K2-18b_GJ436_0.7_albedo_75bar_100metal_PTA1_6e16s.vul',
+
+>>>>>>> defa297b8908fb28a979a07a58f1dfa4851e8ed4
              
              
            
              ]
+<<<<<<< HEAD
 titles = ['GJ-436','GJ-163', '6e16']
 plot_title = 'Inhabited TOI-270 d, AC1 PT with different stars'
+=======
+titles = [ '3 Gyr', '2.4 Gyr', '1.8 Gyr', '3e-3, 0.75 albedo, H20 size']
+plot_title = 'K2-18 75 bar, 0.7 UV albedo for different stellar ages'
+>>>>>>> defa297b8908fb28a979a07a58f1dfa4851e8ed4
 
 # Line styles for each dataset (extend as needed)
 line_styles = ['-', '-.', '--', ':']  # Solid, dashed, dash-dot, dot
@@ -39,6 +57,7 @@ tex_labels = {
 
 # Error bar configurations
 error_bar_sets = {
+<<<<<<< HEAD
     'benneke': { #1 offset from Benneke et al. Table 2
         'CH4': {'x_center': -1.64, 'dx_pos': 0.38, 'dx_neg': 0.36, 'y': 0.3e-3},
         'CO2': {'x_center': -1.67, 'dx_pos': 0.40, 'dx_neg': 0.60, 'y': 0.7e-3},
@@ -56,6 +75,15 @@ error_bar_sets = {
         'CS2': {'x_center': -3.07, 'dx_pos': 0.74, 'dx_neg': 0.91,'y': 1.8e-3},
         'C2H6': {'x_center': -1.72, 'y': 2.0e-3},
         'CO': {'x_center': -2.7, 'y': 3e-3}
+=======
+    'cb_1': {
+        'CH4': {'x_center': -1.74, 'dx_pos': 0.59, 'dx_neg': 0.69, 'y': 0.5e-3},
+        'CO2': {'x_center': -2.09, 'dx_pos': 0.51, 'dx_neg': 0.94, 'y': 1.2e-3},
+        'H2O': {'x_center': -3.06, 'y': 0.5e-3},
+        'NH3': {'x_center': -4.51, 'y': 1.6e-3},
+        'CO': {'x_center': -3.5, 'y': 1.8e-3},
+        'HCN': {'x_center': -2.92, 'y': 4e-3},
+>>>>>>> defa297b8908fb28a979a07a58f1dfa4851e8ed4
     },
 }
 
@@ -169,6 +197,10 @@ ax.set_title(plot_title)
 ax.set_xlabel("Mixing Ratio")
 ax.set_ylabel("Pressure (bar)")
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> defa297b8908fb28a979a07a58f1dfa4851e8ed4
 # Save plot
 output_path = os.path.join(plot_dir, plot_name + '.png')
 plt.savefig(output_path)
