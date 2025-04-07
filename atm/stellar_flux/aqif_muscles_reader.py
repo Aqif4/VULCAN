@@ -8,12 +8,12 @@ In SIMBAD, mas = 0.001 arcsec:
 '''
 
 #Input file
-file='fits_files/hlsp_muscles_multi_multi_gj832_broadband_v22_const-res-sed.fits'
-output='sflux-GJ832_from_muscles.txt'
+file='fits_files/hlsp_muscles_multi_multi_gj176_broadband_v22_adapt-const-res-sed.fits'
+output='sflux-GJ176_adapt.txt'
 
 
-stellar_radius= 0.442   #solar radii
-stellar_distance_pc= 4.964     #pc
+stellar_radius= 0.478  #solar radii
+stellar_distance_pc= 9.547   #pc
 
 #Constants
 lyr = 9.461e17  # cm

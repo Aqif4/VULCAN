@@ -9,23 +9,20 @@ import pickle
 # Setting input arguments
 plot_spec = 'H2O,CH4,CO2,CO,NH3,CH3CL,HCN'  # Species to plot, separated by commas
 
-plot_name = 'K2-18b_EQs' # Output plot name
+plot_name = 'Considerations_50bar_0.75alb_GJ436' # Output plot name
 plot_dir = vulcan_cfg.plot_dir if hasattr(vulcan_cfg, 'plot_dir') else 'path/to/your/plot/directory'  # Ensure plot_dir is set
 error_bar_set = 'cb_1'
 vul_files = [
              
-             "output/K2-18b_EQ/K2-18b_1bar_100metal_1s_EQ.vul",
-             "output/Albedo_Surface/EQ/UH_K2-18b_GJ176_25bar_100metal_PT3.vul",
-             "output/Albedo_Surface/EQ/UH_K2-18b_GJ176_50bar_100metal_PT3.vul",
-             "output/Albedo_Surface/EQ/UH_K2-18b_GJ176_75bar_100metal_PT3.vul",
-
+             "output/Albedo_Surface_restart/1e17/Considerations_UH_K2-18b_GJ436_0.75_albedo_50bar_100metal_PT3_1e17s.vul",
+             "output/Albedo_Surface_restart/1e17_greg/Considerations_UH_K2-18b_GJ436_0.75_albedo_50bar_100metal_PT3_1e17s.vul"
             
 
              
              
            
              ]
-titles = [ "1bar", "25bar", "50bar", "75bar"]
+titles = [ "My sflux", "Your sflux", "50bar", "75bar"]
 plot_title = ''
 
 # Line styles for each dataset (extend as needed)
