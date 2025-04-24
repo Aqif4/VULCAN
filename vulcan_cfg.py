@@ -3,25 +3,25 @@
 # =============================================================================
 
 # ====== Setting up the elements included in the network ======
-atom_list = ['H', 'O', 'C', 'N']
+atom_list = ['H', 'O', 'C', 'N', 'S']
 loss_ex = ['C','O']
 # ====== Setting up paths and filenames for the input and output files  ======
 # input:
-network = 'thermo/NCHO_photo_network.txt'
+network = '/home/ac2416/Documents/VULCAN/thermo/SNCHO_DMS_photo_network_Tsai2024.txt'
 use_lowT_limit_rates = True
 gibbs_text = 'thermo/gibbs_text.txt' # (all the nasa9 files must be placed in the folder: thermo/NASA9/)
 cross_folder = 'thermo/photo_cross/'
 com_file = 'thermo/all_compose.txt'
-atm_file = 'atm/toi270d_PT/I_TOI270d_Psurf_1bar_Tsurf_360K_Tstrat_290K.txt' # TP and Kzz (optional) file
+atm_file = 'atm/toi270d_PT/A_TOI270d_Psurf_1bar_Tsurf_340K_Tstrat_260K.txt' # TP and Kzz (optional) file
 sflux_file = 'atm/stellar_flux/sflux-GJ436_0.3_albedo.txt' # sflux-HD189_B2020.txt This is the flux density at the stellar surface
 top_BC_flux_file = 'atm/BC_top.txt' # the file for the top boundary conditions
 bot_BC_flux_file = '' # the file for the lower boundary conditions
 vul_ini =  '' # the file to initialize the abundances for ini_mix = 'vulcan_ini'
 # output:
-output_dir = 'output/TOI-776c_EQ/'
+output_dir = 'output/TOI-270d_EQ_with_sulfur/'
 plot_dir = 'plot/'
 movie_dir = 'plot/movie/'
-out_name =  'TOI-776c_1bar_100metal_EQ_nz250_I_PT.vul' # output file name
+out_name =  'TOI-270d_1bar_100metal_EQ_nz250.vul' # output file name
 
 # ====== For Long runs ======
 use_finalsmooth = 0
@@ -46,8 +46,8 @@ const_mix = {'CH4':1e-10, 'CO':1e-10, 'CO2': 0.008, 'O2':O_H*0.01, 'He':0.09691,
 use_photo = True
 # astronomy input
 r_star = 0.464 # stellar radius in solar radius, gj436=0.464 Torres 2007
-Rp = 1.30E9 # Planetary radius (cm) (for computing gravity)
-orbit_radius = 0.1001 # planet-star distance in A.U.
+Rp = 1.3588E9 # Planetary radius (cm) (for computing gravity)
+orbit_radius = 0.07210 # planet-star distance in A.U.
 sl_angle = 60 /180.*3.14159 # the zenith angle of the star in degree (usually 58 deg for the dayside average)
 f_diurnal = 0.5 # to account for the diurnal average of solar flux (i.e. 0.5 for Earth; 1 for tidally-locked planets)
 scat_sp = ['H2', 'He'] # the bulk gases that contribute to Rayleigh scattering
@@ -73,7 +73,7 @@ if use_photo == False and use_ion == True:
 atm_base = 'H2' #Options: 'H2', 'N2', 'O2', 'CO2 -- the bulk gas of the atmosphere: changes the molecular diffsion, thermal diffusion factor, and settling velocity
 rocky = False # for the surface gravity
 nz = 250   # number of vertical layers
-P_b = 1e6 * 1 # pressure at the bottom (dyne/cm^2)
+P_b = 1e6 * 1  # pressure at the bottom (dyne/cm^2)
 P_t = 1e6 * 1e-11 # pressure at the top (dyne/cm^2)
 use_Kzz = True
 use_moldiff = True
@@ -83,7 +83,7 @@ Kzz_prof = 'const' # Options: 'const','file' or 'Pfunc' (Kzz increased with P^-0
 K_max = 5e5        # for Kzz_prof = 'Pfunc'
 K_p_lev = 0.1      # for Kzz_prof = 'Pfunc'
 vz_prof = 'const'  # Options: 'const' or 'file'
-gs = 1615        # surface gravity (cm/s^2)  (HD189:2140  HD209:936)
+gs = 1031.66         # surface gravity (cm/s^2)  (HD189:2140  HD209:936)
 Tiso = 305.0 # only read when atm_type = 'isothermal'
 # setting the parameters for the analytical T-P from (126)in Heng et al. 2014. Only reads when atm_type = 'analytical'
 # T_int, T_irr, ka_L, ka_S, beta_S, beta_L
@@ -114,7 +114,7 @@ remove_list = [] # in pairs e.g. [1,2]
 use_relax = ['H2O']
 use_condense = True
 use_settling = True
-start_conden_time = 1
+start_conden_time = 0
 humidity = 1.0
 stop_conden_time = 1e9 # after this time to fix the condensable species, if wrong try 5e7. This has now been increased to 1e8 after Winter
 condense_sp = ['H2O']
